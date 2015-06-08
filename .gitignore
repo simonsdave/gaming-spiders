@@ -1,0 +1,4 @@
+*.pyc
+dist
+env
+gaming_spiders.egg-info
