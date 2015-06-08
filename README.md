@@ -1,4 +1,4 @@
-# gaming_spiders
+# gaming_spiders [![Build Status](https://travis-ci.org/simonsdave/gaming_spiders.svg?branch=master)](https://travis-ci.org/simonsdave/gaming_spiders)
 A collection of [CloudFeaster](https://github.com/simonsdave/clf)
 spiders for various loyalty programs.
 
