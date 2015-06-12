@@ -11,9 +11,9 @@
 #   sudo docker push simonsdave/gaming_spiders
 #
 
-FROM simonsdave/spidering:14.04
+FROM simonsdave/spidering:0.5.0
 
 MAINTAINER Dave Simons
 
-ADD dist/gaming_spiders-1.0.0.tar.gz /tmp/.
-RUN pip install --process-dependency-links /tmp/gaming_spiders-1.0.0
+ADD dist/gaming_spiders-0.1.0.tar.gz /tmp/.
+RUN pip install --process-dependency-links /tmp/gaming_spiders-0.1.0
