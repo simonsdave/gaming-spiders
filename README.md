@@ -22,6 +22,29 @@ Checking connectivity... done.
 ##Creating a Package
 
 ```bash
+gcloud compute instances create docker-image-build --machine-type n1-standard-1 --image ubuntu-14-04
+```
+
+```bash
+>gcloud compute ssh docker-image-build
+
+<<<snip>>>
+
+apt-get update
+
+apt-get install -y docker.io
+
+apt-get install -y git
+
+apt-get install -y python-virtualenv
+apt-get install -y python-dev
+
+git clone https://github.com/simonsdave/cloudfeaster_infrastructure.git
+cd cloudfeaster_infrastructure
+source cfg4dev
+```
+
+```bash
 pushd $(mktemp -d 2> /dev/null || mktemp -d -t DAS) > /dev/null
 virtualenv env
 source "$PWD/env/bin/activate"
