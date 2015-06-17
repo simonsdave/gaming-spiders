@@ -5,12 +5,14 @@
 
 set -x
 
-# python setup.py sdist --formats=gztar
+rm -rf "$(PWD)/dist"
+python setup.py sdist --formats=gztar
 
 IMAGE_VERSION=$(python - <<EOF
 import gaming_spiders
 print gaming_spiders.__version__
-EOF)
+EOF
+)
 
 sudo docker kill `sudo docker ps --no-trunc -q` >& /dev/null
 sudo docker rm `sudo docker ps --no-trunc -a -q` >& /dev/null
