@@ -1,14 +1,14 @@
 # to build the image
 #
-#   sudo docker build -t simonsdave/gaming_spiders .
+#   sudo docker build -t simonsdave/gaming-spiders .
 #
 # for testing/debugging
 #
-#   sudo docker run -i -t simonsdave/gaming_spiders /bin/bash
+#   sudo docker run -i -t simonsdave/gaming-spiders /bin/bash
 #
 # to push to dockerhub
 #
-#   sudo docker push simonsdave/gaming_spiders
+#   sudo docker push simonsdave/gaming-spiders
 #
 
 FROM simonsdave/cloudfeaster
