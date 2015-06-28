@@ -1,4 +1,4 @@
-# gaming_spiders [![Requirements Status](https://requires.io/github/simonsdave/gaming_spiders/requirements.svg?branch=master)](https://requires.io/github/simonsdave/gaming_spiders/requirements/?branch=master) [![Build Status](https://travis-ci.org/simonsdave/gaming_spiders.svg?branch=master)](https://travis-ci.org/simonsdave/gaming_spiders) 
+# gaming_spiders [![Requirements Status](https://requires.io/github/simonsdave/gaming_spiders/requirements.svg?branch=master)](https://requires.io/github/simonsdave/gaming_spiders/requirements/?branch=master) [![Build Status](https://travis-ci.org/simonsdave/gaming_spiders.svg?branch=master)](https://travis-ci.org/simonsdave/gaming_spiders)
 A collection of [CloudFeaster](https://github.com/simonsdave/clf)
 spiders for various gaming services.
 
@@ -19,39 +19,5 @@ Checking connectivity... done.
 (env)> cd gaming_spiders
 (env)> ./miniclip.py
 {"status": "Ok", "status_code": 0, "data": {"1": {"link": "http://www.miniclip.com/games/8-ball-pool-multiplayer/en/#t-w-t", "title": "8 Ball Pool"}, "2": {"link": "http://www.miniclip.com/games/tanki-online/en/#t-w-t", "title": "Tanki Online"}, "3": {"link": "http://www.miniclip.com/games/agar/en/#t-w-t", "title": "agar.io"}, "4": {"link": "http://www.miniclip.com/games/soccer-stars-mobile/en/#t-w-t", "title": "Soccer Stars Mobile"}, "5": {"link": "http://www.miniclip.com/games/soccer-physics/en/#t-w-t-H", "title": "Soccer Physics"}, "6": {"link": "http://www.miniclip.com/games/free-running-2/en/#t-w-t-H", "title": "Free Running 2"}, "7": {"link": "http://www.miniclip.com/games/clicker-heroes/en/#t-w-t-H", "title": "Clicker Heroes"}, "8": {"link": "http://www.miniclip.com/games/bike-rivals/en/#t-w-t-H", "title": "Bike Rivals"}, "9": {"link": "http://www.miniclip.com/games/wrestle-jump/en/#t-w-t-H", "title": "Wrestle Jump"}, "10": {"link": "http://www.miniclip.com/games/beast-quest/en/#t-w-t-H", "title": "Beast Quest"}}}
-(env)> 
-```
-
-##Creating simonsdave/gaming_spiders Docker image
-
-```bash
-gcloud compute instances create docker-image-build --machine-type n1-standard-1 --image ubuntu-14-04
-```
-
-```bash
->gcloud compute ssh docker-image-build
-
-sudo apt-get update
-
-sudo apt-get install -y docker.io
-
-sudo apt-get install -y git
-
-sudo apt-get install -y python-virtualenv
-sudo apt-get install -y python-dev
-
-sudo apt-get install -y xvfb
-
-sudo curl https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-sudo apt-get update
-sudo apt-get install -y google-chrome-stable
-
-sudo apt-get install -y unzip
-
-git clone https://github.com/simonsdave/gaming_spiders.git
-cd gaming_spiders
-source cfg4dev
-
-./create_spidering_image.sh
+(env)>
 ```
