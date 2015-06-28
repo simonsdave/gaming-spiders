@@ -11,9 +11,19 @@
 #   sudo docker push simonsdave/gaming_spiders
 #
 
-FROM simonsdave/spidering:0.5.0
+FROM simonsdave/cloudfeaster
 
 MAINTAINER Dave Simons
 
-ADD dist/gaming_spiders-0.1.0.tar.gz /tmp/.
-RUN pip install --process-dependency-links /tmp/gaming_spiders-0.1.0
+RUN apt-get update -y
+RUN apt-get install -y python
+RUN apt-get install -y python-pip
+RUN pip install pip==1.5.6
+
+ADD gaming_spiders gaming_spiders
+ADD setup.py .
+ADD MANIFEST.in .
+
+RUN python setup.py sdist --formats=gztar
+
+RUN pip install --process-dependency-links dist/gaming_spiders-*.*.*.tar.gz
