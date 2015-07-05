@@ -15,11 +15,6 @@ FROM simonsdave/cloudfeaster
 
 MAINTAINER Dave Simons
 
-RUN apt-get update -y
-RUN apt-get install -y python
-RUN apt-get install -y python-pip
-RUN pip install pip==1.5.6
-
 ADD gaming_spiders gaming_spiders
 ADD setup.py .
 ADD MANIFEST.in .
