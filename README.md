@@ -2,6 +2,11 @@
 A collection of [CloudFeaster](https://github.com/simonsdave/clf)
 spiders for various gaming services.
 
+This repo leverages [DockerHub's](https://hub.docker.com/)
+[automated build](https://docs.docker.com/docker-hub/builds/) feature to
+keep the [simonsdave / gaming-spiders](https://registry.hub.docker.com/u/simonsdave/gaming-spiders/)
+docker image up to date.
+
 ##Getting Started
 
 ```bash
