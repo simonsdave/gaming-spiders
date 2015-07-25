@@ -45,7 +45,7 @@ setup(
         "cloudfeaster==0.5.0",
     ],
     dependency_links=[
-        "http://github.com/simonsdave/cloudfeaster/tarball/master#egg=cloudfeaster-0.5.0",
+        "https://github.com/simonsdave/cloudfeaster/tarball/master#egg=cloudfeaster-0.5.0",
     ],
     version=version,
     description="Gaming Spiders",
