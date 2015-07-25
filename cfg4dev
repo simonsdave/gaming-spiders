@@ -1,7 +1,7 @@
 configure_loyalty_program_spiders()
 {
-    if [ ! -f "$PWD/.801dbe4659a641739cbe94fcf0baab03" ]; then
-        echo "Must source this script from clf's root directory"
+    if [ ! -f "$PWD/requirements.txt" ]; then
+        echo "Must source this script from project's root directory"
         return 1
     fi
 
