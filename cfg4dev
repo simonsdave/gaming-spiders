@@ -1,7 +1,7 @@
-configure_loyalty_program_spiders()
+configure_dev_env()
 {
     if [ ! -f "$PWD/requirements.txt" ]; then
-        echo "Must source this script from project's root directory"
+        echo "Must source this script from project's root directory" >&2
         return 1
     fi
 
@@ -48,4 +48,4 @@ configure_loyalty_program_spiders()
     return 0
 }
 
-configure_loyalty_program_spiders
+configure_dev_env
