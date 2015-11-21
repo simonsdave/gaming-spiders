@@ -23,7 +23,11 @@ class BigFishOnlineGamesSpider(spider.Spider):
         data = {}
 
         for rank in range(1, 10):
-            locator = "//dl[contains(@class, 'game_list') and contains(@class, 'rank_list') and contains(@class, 'js_sort')]/dt/span[text()='%d']/../../dd/a" % rank
+            locator_fmt = (
+                "//dl[contains(@class, 'game_list') and contains(@class, 'rank_list') and contains(@class, 'js_sort')]"
+                "/dt/span[text()='%d']/../../dd/a"
+            )
+            locator = locator_fmt % rank
             link_element = browser.find_element_by_xpath(locator)
             link = link_element.get_attribute("href")
             title = link_element.get_text()
