@@ -28,7 +28,10 @@ class GamehouseOnlineGamesSpider(spider.Spider):
             link_element = browser.find_element_by_xpath(link_locator)
             link = link_element.get_attribute("href")
 
-            title_locator_fmt = "//li[@id='game_%d' and @class='gamebox_big']/a/div[@class='rightside']/div[@class='gametitle']"
+            title_locator_fmt = (
+                "//li[@id='game_%d' and @class='gamebox_big']/a"
+                "/div[@class='rightside']/div[@class='gametitle']"
+            )
             title_locator = title_locator_fmt % rank
             title_element = browser.find_element_by_xpath(title_locator)
             title = title_element.get_text()
