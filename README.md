@@ -23,8 +23,53 @@ Checking connectivity... done.
 >cd gaming-spiders/
 >source cfg4dev
 <<<snip lots>>>
-(env)> cd gaming-spiders
-(env)> ./miniclip.py
-{"status": "Ok", "status_code": 0, "data": {"1": {"link": "http://www.miniclip.com/games/8-ball-pool-multiplayer/en/#t-w-t", "title": "8 Ball Pool"}, "2": {"link": "http://www.miniclip.com/games/tanki-online/en/#t-w-t", "title": "Tanki Online"}, "3": {"link": "http://www.miniclip.com/games/agar/en/#t-w-t", "title": "agar.io"}, "4": {"link": "http://www.miniclip.com/games/soccer-stars-mobile/en/#t-w-t", "title": "Soccer Stars Mobile"}, "5": {"link": "http://www.miniclip.com/games/soccer-physics/en/#t-w-t-H", "title": "Soccer Physics"}, "6": {"link": "http://www.miniclip.com/games/free-running-2/en/#t-w-t-H", "title": "Free Running 2"}, "7": {"link": "http://www.miniclip.com/games/clicker-heroes/en/#t-w-t-H", "title": "Clicker Heroes"}, "8": {"link": "http://www.miniclip.com/games/bike-rivals/en/#t-w-t-H", "title": "Bike Rivals"}, "9": {"link": "http://www.miniclip.com/games/wrestle-jump/en/#t-w-t-H", "title": "Wrestle Jump"}, "10": {"link": "http://www.miniclip.com/games/beast-quest/en/#t-w-t-H", "title": "Beast Quest"}}}
+(env)>cd gaming_spiders
+(env)>./miniclip.py | jq
+{
+  "status": "Ok",
+  "status_code": 0,
+  "data": {
+    "1": {
+      "link": "http://www.miniclip.com/games/8-ball-pool-multiplayer/en/#t-w-t",
+      "title": "8 Ball Pool"
+    },
+    "2": {
+      "link": "http://www.miniclip.com/games/agar-io/en/#t-w-t",
+      "title": "Agar.io"
+    },
+    "3": {
+      "link": "http://www.miniclip.com/games/contract-wars/en/#t-w-t",
+      "title": "Contract Wars"
+    },
+    "4": {
+      "link": "http://www.miniclip.com/games/empire/en/#t-w-t",
+      "title": "Empire"
+    },
+    "5": {
+      "link": "http://www.miniclip.com/games/adventure-capitalist/en/#t-w-t",
+      "title": "AdVenture Capitalist"
+    },
+    "6": {
+      "link": "http://www.miniclip.com/games/game-of-thrones-ascent/en/#t-w-t",
+      "title": "Game of Thrones Ascent"
+    },
+    "7": {
+      "link": "http://www.miniclip.com/games/soccer-stars-mobile/en/#t-w-t",
+      "title": "Soccer Stars Mobile"
+    },
+    "8": {
+      "link": "http://www.miniclip.com/games/tanki-online/en/#t-w-t",
+      "title": "Tanki Online"
+    },
+    "9": {
+      "link": "http://www.miniclip.com/games/free-running-2/en/#t-w-t",
+      "title": "Free Running 2"
+    },
+    "10": {
+      "link": "http://www.miniclip.com/games/bike-rivals/en/#t-w-t",
+      "title": "Bike Rivals"
+    }
+  }
+}
 (env)>
 ```
