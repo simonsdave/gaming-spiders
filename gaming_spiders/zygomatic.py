@@ -24,7 +24,7 @@ class ZygomaticSpider(spider.Spider):
 
             title_locator = "//div[@class='index block-group']/div[%d]/a/div/h3" % rank
             title_element = browser.find_element_by_xpath(title_locator)
-            title = link_element.get_text()
+            title = title_element.get_text()
 
             data[rank] = {
                 "title": title,
