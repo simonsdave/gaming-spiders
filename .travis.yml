@@ -10,3 +10,5 @@ script:
   - pep8
   - flake8
   - python setup.py sdist --formats=gztar
+after_success:
+  - sudo docker login --email="$DOCKER_EMAIL" --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD"
