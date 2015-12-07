@@ -12,3 +12,5 @@ script:
   - python setup.py sdist --formats=gztar
 after_success:
   - sudo docker login --email="$DOCKER_EMAIL" --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD"
+  - cp dist/gaming_spiders-*.*.*.tar.gz spiders.tar.gz
+  - sudo docker build -t simonsdave/gaming-spiders .
