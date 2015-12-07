@@ -1,8 +1,12 @@
 language: python
 python:
-- '2.7'
+  - '2.7'
+sudo: required
+services:
+  - docker
 install:
-- source cfg4dev
+  - source cfg4dev
 script:
-- pep8
-- flake8
+  - pep8
+  - flake8
+  - python setup.py sdist --formats=gztar
