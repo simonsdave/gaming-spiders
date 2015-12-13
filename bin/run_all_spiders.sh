@@ -25,7 +25,7 @@ EXIT_CODE=0
 for GAMING_SPIDER in $SCRIPT_DIR_NAME/../gaming_spiders/*.py
 do
     if [ -x $GAMING_SPIDER ]; then
-        echo $GAMING_SPIDER
+        echo $(python -c "import os; print os.path.basename(\"$GAMING_SPIDER\")")
 
         SPIDER_OUTPUT=`mktemp 2> /dev/null || mktemp -t DAS`
         $GAMING_SPIDER >& $SPIDER_OUTPUT
