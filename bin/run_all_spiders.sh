@@ -26,10 +26,14 @@ for GAMING_SPIDER in $SCRIPT_DIR_NAME/../gaming_spiders/*.py
 do
     if [ -x $GAMING_SPIDER ]; then
         echo $GAMING_SPIDER
-        $GAMING_SPIDER
+
+        SPIDER_OUTPUT=`mktemp 2> /dev/null || mktemp -t DAS`
+        $GAMING_SPIDER >& $SPIDER_OUTPUT
         if [ "$?" != "0" ]; then
             EXIT_CODE=1
+            cat $SPIDER_OUTPUT
         fi
+        rm $SPIDER_OUTPUT
     fi
 done
 
