@@ -32,7 +32,7 @@ with open("gaming_spiders/__init__.py", "r") as fd:
             version = match.group("version")
             break
 if not version:
-    raise Exception("Can't locate spiders' version number")
+    raise Exception("Can't locate project's version number")
 
 setup(
     name="gaming_spiders",
@@ -42,10 +42,10 @@ setup(
     scripts=[
     ],
     install_requires=[
-        "cloudfeaster==0.5.0",
+        "cloudfeaster==0.6.0",
     ],
     dependency_links=[
-        "https://github.com/simonsdave/cloudfeaster/tarball/master#egg=cloudfeaster-0.5.0",
+        "https://github.com/simonsdave/cloudfeaster/tarball/v0.6.0#egg=cloudfeaster-0.6.0",
     ],
     version=version,
     description="Gaming Spiders",
