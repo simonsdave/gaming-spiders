@@ -40,7 +40,7 @@ configure_dev_env()
         chmod u+x jq
         mv jq "$PWD/env/bin/."
     fi
-    export PATH=$PATH:"$PWD/bin"
+    export PATH="$PWD/bin":$PATH
     export PYTHONPATH="$PWD"
 
     if [ "" != "`which Xvfb`" ]; then
