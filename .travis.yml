@@ -6,6 +6,7 @@ services:
   - docker
 install:
   - source cfg4dev
+  - google-chrome --version
 script:
   - pep8
   - flake8
