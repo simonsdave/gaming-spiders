@@ -24,8 +24,8 @@ class MSNOnlineGamesSpider(spider.Spider):
 
         data = {}
         for rank in range(1, 6):
-            locator_fmt = "//td[@class='ModulePositionCell' and text()='%d.']/../td/a"
-            locator = locator_fmt % rank
+            locator = '//ol[@id="TopGamesInfo_Top10_Table"]/li[%d]/a' % rank
+            print locator
             link_element = browser.find_element_by_xpath(locator)
             link = link_element.get_attribute("href")
             title = link_element.get_text()
