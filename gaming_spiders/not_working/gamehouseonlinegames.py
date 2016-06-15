@@ -17,7 +17,12 @@ class GamehouseOnlineGamesSpider(spider.Spider):
         }
 
     def crawl(self):
-        with webdriver_spider.Browser(self.url) as browser:
+        user_agent = (
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) '
+            'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 '
+            'Safari/537.36'
+        )
+        with webdriver_spider.Browser(self.url, user_agent) as browser:
             return self._crawl(browser)
 
     def _crawl(self, browser):
