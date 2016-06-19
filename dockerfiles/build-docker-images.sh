@@ -3,6 +3,8 @@
 # this script builds the repo's docker images
 #
 
+set -e
+
 SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
 
 VERBOSE=0
