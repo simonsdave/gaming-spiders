@@ -13,7 +13,7 @@ class GamesonlySpider(spider.Spider):
     @classmethod
     def get_metadata(cls):
         return {
-            "url": "http://www.gamesonly.net/",
+            'url': 'http://www.gamesonly.net/',
         }
 
     def crawl(self):
@@ -25,19 +25,16 @@ class GamesonlySpider(spider.Spider):
         data = {}
 
         for rank in range(1, 11):
-            locator = "//h2[text()='TOP 10 GAMES']/../ul/li/span[text()='%d']/../a" % rank
+            locator = '//h4[text()="Top rated games"]/../ul/li[text()="%d. "]/a' % rank
             link_element = browser.find_element_by_xpath(locator)
-            link = link_element.get_attribute("href")
-            title = link_element.get_text()
-
             data[rank] = {
-                "title": title,
-                "link": link,
+                'title': link_element.get_text(),
+                'link': link_element.get_attribute('href'),
             }
 
         return spider.CrawlResponseOk(data)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     crawl_args = spider.CLICrawlArgs(GamesonlySpider)
     crawler = spider.SpiderCrawler(GamesonlySpider)
     crawl_result = crawler.crawl(*crawl_args)
