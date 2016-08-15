@@ -4,11 +4,12 @@
 ![Python 2.7](https://img.shields.io/badge/python-2.7-FFC100.svg?style=flat)
 [![Requirements Status](https://requires.io/github/simonsdave/gaming-spiders/requirements.svg?branch=master)](https://requires.io/github/simonsdave/gaming-spiders/requirements/?branch=master)
 [![Build Status](https://travis-ci.org/simonsdave/gaming-spiders.svg?branch=master)](https://travis-ci.org/simonsdave/gaming-spiders)
+[![docker-simonsdave](https://img.shields.io/badge/docker-simonsdave%2Fgaming%20spiders-blue.svg)](https://hub.docker.com/r/simonsdave/gaming-spiders/)
 
 A collection of [Cloudfeaster](https://github.com/simonsdave/cloudfeaster)
 spiders for various gaming services.
 
-##Getting Started
+## Getting Started
 
 ```bash
 >cd
@@ -23,7 +24,7 @@ Checking connectivity... done.
 >source cfg4dev
 <<<snip lots>>>
 (env)>cd gaming_spiders
-(env)>./miniclip.py | jq
+(env)>./miniclip.py | jq .
 {
   "status": "Ok",
   "status_code": 0,
