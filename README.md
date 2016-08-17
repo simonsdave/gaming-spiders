@@ -73,3 +73,160 @@ Checking connectivity... done.
 }
 (env)>
 ```
+
+## Running Spiders on [ECS](https://github.com/simonsdave/ecs) Deployment
+
+Discover available spiders.
+Steps below assume the environment variables ```ECS_ENDPOINT```, ```ECS_KEY``` and ```ECS_SECRET```
+have already been set.
+
+```bash
+>cat gaming-spiders.json
+{
+  "docker_image": "simonsdave/gaming-spiders:latest",
+  "cmd": [
+    "spiders.py"
+  ]
+}
+>curl \
+   -s \
+   -u $ECS_KEY:$ECS_SECRET \
+   -X POST \
+   -H "Content-Type: application/json" \
+   --data-binary @gaming_spiders.json \
+   $ECS_ENDPOINT/v1.1/tasks | \
+   jq .stdout | \
+   sed -e 's|"||g' | \
+   base64 --decode | \
+   jq .
+{
+ "gaming_spiders.mindgames.MindGamesSpider": {
+   "url": "http://www.mindgames.com/?sort=mostPlayed",
+   "factor_display_names": {},
+   "ttl": 60,
+   "factor_display_order": []
+ },
+ "gaming_spiders.gamehouseonlinegames.GamehouseOnlineGamesSpider": {
+   "url": "http://www.gamehouse.com/online-top-100-games?platform=online-games",
+   "factor_display_names": {},
+   "ttl": 60,
+   "factor_display_order": []
+ },
+ "gaming_spiders.hiddenobjectgames.HiddenObjectGamesSpider": {
+   "url": "http://www.hiddenobjectgames.com/?sort=mostPlayed",
+   "factor_display_names": {},
+   "ttl": 60,
+   "factor_display_order": []
+ },
+ "gaming_spiders.match3games.Match3GamesSpider": {
+   "url": "http://www.match3games.com/?sort=mostPlayed",
+   "factor_display_names": {},
+   "ttl": 60,
+   "factor_display_order": []
+ },
+ "gaming_spiders.solitaireonline.SolitaireOnlineSpider": {
+   "url": "http://www.solitaireonline.com/?sort=mostPlayed",
+   "factor_display_names": {},
+   "ttl": 60,
+   "factor_display_order": []
+ },
+ "gaming_spiders.gamesonly.GamesonlySpider": {
+   "url": "http://www.gamesonly.net/",
+   "factor_display_names": {},
+   "ttl": 60,
+   "factor_display_order": []
+ },
+ "gaming_spiders.mahjonggames.MahjongGamesSpider": {
+   "url": "http://www.mahjonggames.com/?sort=mostPlayed",
+   "factor_display_names": {},
+   "ttl": 60,
+   "factor_display_order": []
+ },
+ "gaming_spiders.miniclip.MiniclipSpider": {
+   "url": "http://www.miniclip.com/games/en/",
+   "factor_display_names": {},
+   "ttl": 60,
+   "factor_display_order": []
+ },
+ "gaming_spiders.bigfishonlinegames.BigFishOnlineGamesSpider": {
+   "url": "http://www.bigfishgames.com/online-games/index.html",
+   "factor_display_names": {},
+   "ttl": 60,
+   "factor_display_order": []
+ }
+}
+```
+
+Now we know what spiders are available.
+Let's run the [Miniclip](http://www.miniclip.com/games/en/) spider.
+
+```bash
+>cat cat gaming_spider.json
+{
+  "docker_image": "simonsdave/gaming-spiders:latest",
+  "cmd": [
+    "spiderhost.sh",
+    "gaming_spiders.miniclip.MiniclipSpider"
+  ]
+}
+>curl \
+   -s \
+   -u $ECS_KEY:$ECS_SECRET \
+   -X POST \
+   -H "Content-Type: application/json" \
+   --data-binary @gaming_spider.json \
+   $ECS_ENDPOINT/v1.1/tasks | \
+   jq .stdout | \
+   sed -e 's|"||g' | \
+   base64 --decode | \
+   jq .
+{
+ "1": {
+   "link": "http://www.miniclip.com/games/diepio/en/#t-w-t-H",
+   "title": "Diep.io"
+ },
+ "2": {
+   "link": "http://www.miniclip.com/games/8-ball-pool-multiplayer/en/#t-w-t-H",
+   "title": "8 Ball Pool"
+ },
+ "3": {
+   "link": "http://www.miniclip.com/games/slitherio/en/#t-w-t-H",
+   "title": "Slither.io"
+ },
+ "4": {
+   "link": "http://www.miniclip.com/games/tanki-online/en/#t-w-t-H",
+   "title": "Tanki Online"
+ },
+ "5": {
+   "link": "http://www.miniclip.com/games/agar-io/en/#t-w-t-H",
+   "title": "Agar.io"
+ },
+ "6": {
+   "link": "http://www.miniclip.com/games/soccer-stars-mobile/en/#t-w-t-H",
+   "title": "Soccer Stars Mobile"
+ },
+ "7": {
+   "link": "http://www.miniclip.com/games/soccer-physics/en/#t-w-t-H",
+   "title": "Soccer Physics"
+ },
+ "8": {
+   "link": "http://www.miniclip.com/games/basketball-stars/en/#t-w-t-H",
+   "title": "Basketball Stars"
+ },
+ "9": {
+   "link": "http://www.miniclip.com/games/super-soccer-noggins/en/#t-w-t-H",
+   "title": "Super Soccer Noggins"
+ },
+ "10": {
+   "link": "http://www.miniclip.com/games/color-switch/en/#t-w-t-H",
+   "title": "Color Switch"
+ },
+ "spider": {
+   "version": "ae6287c4047e9371e66ff8426b7818418b2d3de5",
+   "name": "gaming_spiders.miniclip.MiniclipSpider"
+ },
+ "crawl_time_in_ms": 6411,
+ "status": "Ok",
+ "status_code": 0
+}
+```
