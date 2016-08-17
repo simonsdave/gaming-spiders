@@ -42,10 +42,10 @@ setup(
     scripts=[
     ],
     install_requires=[
-        "cloudfeaster==0.8.0",
+        "cloudfeaster==0.9.1",
     ],
     dependency_links=[
-        "https://github.com/simonsdave/cloudfeaster/tarball/v0.8.0#egg=cloudfeaster-0.8.0",
+        "https://github.com/simonsdave/cloudfeaster/tarball/v0.8.0#egg=cloudfeaster-0.9.1",
     ],
     version=version,
     description="Gaming Spiders",
