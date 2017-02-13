@@ -37,6 +37,7 @@ class MSNOnlineGamesSpider(spider.Spider):
 
         return spider.CrawlResponseOk(data)
 
+
 if __name__ == "__main__":
     crawl_args = spider.CLICrawlArgs(MSNOnlineGamesSpider)
     crawler = spider.SpiderCrawler(MSNOnlineGamesSpider)

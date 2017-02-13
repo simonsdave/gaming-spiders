@@ -34,9 +34,10 @@ class GamesonlySpider(spider.Spider):
 
         return spider.CrawlResponseOk(data)
 
+
 if __name__ == '__main__':
     crawl_args = spider.CLICrawlArgs(GamesonlySpider)
     crawler = spider.SpiderCrawler(GamesonlySpider)
     crawl_result = crawler.crawl(*crawl_args)
     print json.dumps(crawl_result)
-    sys.exit(1 if crawl_result['status_code'] else 0)
+    sys.exit(1 if crawl_result['_status_code'] else 0)

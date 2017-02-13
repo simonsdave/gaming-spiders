@@ -11,18 +11,26 @@ configure_dev_env()
         virtualenv env
         source "$PWD/env/bin/activate"
 
-        pip install pip==1.5.6
+        #
+        # pip & setuptools install is here to fix the problem
+        # introduced with setuptools v34 and described well
+        # in this bug
+        #
+        #   https://github.com/pypa/setuptools/issues/942
+        #
+        pip install -U pip
+        pip install setuptools==33.1.1
 
-        pip install --process-dependency-links --requirement "$PWD/requirements.txt"
+        pip install --requirement "$PWD/requirements.txt"
 
         OSNAME=$(uname -s)
         case "$OSNAME" in
             Linux)
-                CHROMEDRIVER_URL="http://chromedriver.storage.googleapis.com/2.22/chromedriver_linux64.zip"
+                CHROMEDRIVER_URL="http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip"
                 JQ_URL="https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64"
                 ;;
             Darwin)
-                CHROMEDRIVER_URL="http://chromedriver.storage.googleapis.com/2.22/chromedriver_mac32.zip"
+                CHROMEDRIVER_URL="http://chromedriver.storage.googleapis.com/2.24/chromedriver_mac32.zip"
                 JQ_URL="https://github.com/stedolan/jq/releases/download/jq-1.5/jq-osx-amd64"
                 ;;
             *)
