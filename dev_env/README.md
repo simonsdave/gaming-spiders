@@ -54,7 +54,7 @@ Checking connectivity... done.
 vagrant@vagrant-ubuntu-trusty-64:~$
 ```
 
-Install all pre-reqs.
+Configure the development environment.
 
 ```bash
 vagrant@vagrant-ubuntu-trusty-64:~$ cd gaming-spiders
