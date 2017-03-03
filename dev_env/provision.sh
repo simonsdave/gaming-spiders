@@ -41,8 +41,25 @@ chmod a+wrx /usr/bin/chromedriver
 
 apt-get install -y xvfb
 
-cp /vagrant/.vimrc ~vagrant/.vimrc
-chown vagrant:vagrant ~vagrant/.vimrc
+DOTVIMRC=~vagrant/.vimrc
+
+echo 'set ruler' > $DOTVIMRC
+echo 'set hlsearch' >> $DOTVIMRC
+echo 'filetype plugin on' >> $DOTVIMRC
+echo 'set ts=4' >> $DOTVIMRC
+echo 'set sw=4' >> $DOTVIMRC
+echo 'set expandtab' >> $DOTVIMRC
+echo 'set encoding=UTF8' >> $DOTVIMRC
+echo 'syntax on' >> $DOTVIMRC
+echo 'au BufNewFile,BufRead *.raml set filetype=raml' >> $DOTVIMRC
+echo 'au BufNewFile,BufRead *.json set filetype=json' >> $DOTVIMRC
+echo 'au BufNewFile,BufRead *.yaml set filetype=yaml' >> $DOTVIMRC
+echo 'autocmd Filetype shell setlocal expandtab tabstop=4 shiftwidth=4' >> $DOTVIMRC
+echo 'autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4' >> $DOTVIMRC
+echo 'autocmd FileType raml setlocal expandtab tabstop=2 shiftwidth=2' >> $DOTVIMRC
+echo 'autocmd FileType yaml setlocal expandtab tabstop=2 shiftwidth=2' >> $DOTVIMRC
+
+chown vagrant:vagrant $DOTVIMRC
 
 echo 'export VISUAL=vim' >> ~vagrant/.profile
 echo 'export EDITOR="$VISUAL"' >> ~vagrant/.profile

@@ -10,6 +10,7 @@ Spin up a VM using [create_dev_env.sh](create_dev_env.sh)
 (instead of using ```vagrant up```).
 
 ```bash
+>cd local
 >./create_dev_env.sh
 github username> simonsdave
 github email> simonsdave@gmail.com
