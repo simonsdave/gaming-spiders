@@ -10,11 +10,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Nothing
+- document how to run spiders on [ECS](https://github.com/simonsdave/ecs)
 
 ### Changed
 
-- Nothing
+- upgrade to Cloudfeaster 0.9.2
 
 ### Removed
 
