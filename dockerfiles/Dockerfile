@@ -1,4 +1,4 @@
-FROM simonsdave/cloudfeaster:v0.9.1
+FROM simonsdave/cloudfeaster:v0.9.4
 
 MAINTAINER Dave Simons
 
