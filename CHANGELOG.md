@@ -14,7 +14,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- upgrade to Cloudfeaster 0.9.2
+- upgrade to Cloudfeaster 0.9.3
+- changed miniclip spider to be a bit smarter and figure out how many
+  games where in the top N list rather than assuming it was always 10 games
 
 ### Removed
 
