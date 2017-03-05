@@ -24,9 +24,12 @@ class MiniclipSpider(spider.Spider):
 
         data = {}
 
-        for rank in range(1, 11):
-            locator = "//li[@class='counter-%d']/a" % rank
-            link_element = browser.find_element_by_xpath(locator)
+        link_elements_locator = "//li[starts-with(@class, 'counter-')]/a"
+        link_elements = browser.find_elements_by_xpath(link_elements_locator)
+        for link_element in link_elements:
+            rank_element_locator = '../span'
+            rank_element = link_element.find_element_by_xpath(rank_element_locator)
+            rank = rank_element.get_int()
             link = link_element.get_attribute("href")
             title = link_element.get_text()
 
