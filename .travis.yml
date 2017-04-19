@@ -5,15 +5,17 @@ sudo: required
 services:
   - docker
 install:
-  # these new few lines (upto 'google-chrome --version') are
-  # here to upgrade the installed version of chrome after
-  # upgrading to version 22 of ChromeDriver
-  - curl -s https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-  - sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-  - sudo apt-get update
-  - sudo apt-get install -y google-chrome-stable
-  - google-chrome --version
   - source cfg4dev
+  # install the lastest version of chrome
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - sudo dpkg -i google-chrome*.deb
+  - google-chrome --version
+  # install chromedriver
+  - curl -s --output chromedriver.zip http://chromedriver.storage.googleapis.com/2.29/chromedriver_linux64.zip
+  - unzip chromedriver.zip
+  - sudo mv chromedriver /usr/local/bin/.
+  - sudo chown root.root /usr/local/bin/chromedriver
+  - sudo chmod a+x /usr/local/bin/chromedriver
 script:
   - pep8
   - flake8
