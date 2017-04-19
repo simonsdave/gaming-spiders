@@ -42,7 +42,7 @@ setup(
     scripts=[
     ],
     install_requires=[
-        "cloudfeaster==0.9.4",
+        "cloudfeaster==0.9.5",
     ],
     version=version,
     description="Gaming Spiders",
