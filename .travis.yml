@@ -24,4 +24,4 @@ script:
   - python setup.py sdist --formats=gztar
   - run_all_spiders.sh
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ] || [ "$TRAVIS_TAG" != "" ]; then ./dockerfiles/build-docker-image.sh -v -t "$TRAVIS_TAG" ./dist/gaming_spiders-*.*.*.tar.gz $DOCKER_USERNAME $DOCKER_PASSWORD; fi
+  - if [ "$TRAVIS_BRANCH" == "master" ] || [ "$TRAVIS_TAG" != "" ]; then ./dockerfiles/build-docker-image.sh -t "$TRAVIS_TAG" ./dist/gaming_spiders-*.*.*.tar.gz $DOCKER_USERNAME $DOCKER_PASSWORD; fi

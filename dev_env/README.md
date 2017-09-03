@@ -10,9 +10,7 @@ Spin up a VM using [create_dev_env.sh](create_dev_env.sh)
 (instead of using ```vagrant up```).
 
 ```bash
->./create_dev_env.sh
-github username> simonsdave
-github email> simonsdave@gmail.com
+>./create_dev_env.sh simonsdave simonsdave@gmail.com ~/.ssh/id_rsa.pub ~/.ssh/id_rsa
 Bringing machine 'default' up with 'virtualbox' provider...
 ==> default: Importing base box 'trusty'...
 .
@@ -40,10 +38,27 @@ Welcome to Ubuntu 14.04 LTS (GNU/Linux 3.13.0-27-generic x86_64)
 vagrant@vagrant-ubuntu-trusty-64:~$
 ```
 
-Clone the repo.
+Start the ssh-agent in the background.
 
 ```bash
-vagrant@vagrant-ubuntu-trusty-64:~$ git clone https://github.com/simonsdave/gaming-spiders.git
+>eval "$(ssh-agent -s)"
+Agent pid 25657
+>
+```
+
+Add SSH private key for github to the ssh-agent
+
+```bash
+~> ssh-add ~/.ssh/id_rsa_github
+Enter passphrase for /home/vagrant/.ssh/id_rsa_github:
+Identity added: /home/vagrant/.ssh/id_rsa_github (/home/vagrant/.ssh/id_rsa_github)
+~>
+```
+
+Clone the repo (note use of SSH)
+
+```bash
+vagrant@vagrant-ubuntu-trusty-64:~$ git clone git@github.com:simonsdave/gaming-spiders.git
 Cloning into 'gaming-spiders'...
 remote: Counting objects: 315, done.
 remote: Compressing objects: 100% (19/19), done.
