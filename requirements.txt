@@ -2,4 +2,4 @@
 -e .
 # the packages below are required for development
 flake8>=2.5.3
-pep8==1.7.0
+pep8==1.7.1

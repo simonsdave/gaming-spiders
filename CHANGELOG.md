@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - upgrade to Cloudfeaster 0.9.5
 - changed miniclip spider to be a bit smarter and figure out how many
   games where in the top N list rather than assuming it was always 10 games
+- pep8 1.7.0 -> 1.7.1
 
 ### Removed
 
