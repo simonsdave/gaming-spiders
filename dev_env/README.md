@@ -34,16 +34,20 @@ Welcome to Ubuntu 14.04 LTS (GNU/Linux 3.13.0-27-generic x86_64)
 0 packages can be updated.
 0 updates are security updates.
 
+New release '16.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
 
-vagrant@vagrant-ubuntu-trusty-64:~$
+
+~>
+```
 ```
 
 Start the ssh-agent in the background.
 
 ```bash
->eval "$(ssh-agent -s)"
-Agent pid 25657
->
+~> eval "$(ssh-agent -s)"
+Agent pid 13350
+~>
 ```
 
 Add SSH private key for github to the ssh-agent
@@ -58,41 +62,41 @@ Identity added: /home/vagrant/.ssh/id_rsa_github (/home/vagrant/.ssh/id_rsa_gith
 Clone the repo (note use of SSH)
 
 ```bash
-vagrant@vagrant-ubuntu-trusty-64:~$ git clone git@github.com:simonsdave/gaming-spiders.git
+~> git clone git@github.com:simonsdave/gaming-spiders.git
 Cloning into 'gaming-spiders'...
-remote: Counting objects: 315, done.
-remote: Compressing objects: 100% (19/19), done.
-remote: Total 315 (delta 9), reused 0 (delta 0), pack-reused 296
-Receiving objects: 100% (315/315), 40.06 KiB | 0 bytes/s, done.
-Resolving deltas: 100% (187/187), done.
+remote: Counting objects: 503, done.
+remote: Total 503 (delta 0), reused 0 (delta 0), pack-reused 503
+Receiving objects: 100% (503/503), 61.52 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (315/315), done.
 Checking connectivity... done.
-vagrant@vagrant-ubuntu-trusty-64:~$
+~>
 ```
 
 Configure the development environment.
 
 ```bash
-vagrant@vagrant-ubuntu-trusty-64:~$ cd gaming-spiders
-vagrant@vagrant-ubuntu-trusty-64:~/gaming-spiders$ source cfg4dev
+~> cd gaming-spiders/
+~/gaming-spiders> source cfg4dev
 New python executable in env/bin/python
 Installing setuptools, pip...done.
 .
 .
 .
+(env) ~/gaming-spiders>
 ```
 
 Run all spiders.
 
 ```bash
-(env)vagrant@vagrant-ubuntu-trusty-64:~/gaming-spiders$ run_all_spiders.sh
+(env) ~/gaming-spiders> run_all_spiders.sh
 bigfishonlinegames.py
+gamehouseonlinegames.py
 gamesonly.py
 hiddenobjectgames.py
 mahjonggames.py
 match3games.py
 mindgames.py
 miniclip.py
-msnonlinegames.py
 solitaireonline.py
-(env)vagrant@vagrant-ubuntu-trusty-64:~/gaming-spiders$
+(env) ~/gaming-spiders>
 ```
