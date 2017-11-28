@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - document how to run spiders on [ECS](https://github.com/simonsdave/ecs)
+- added ```bin/kill-and-rm-all-docker-containers.sh```
 
 ### Changed
 
