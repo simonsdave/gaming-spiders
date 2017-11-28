@@ -25,7 +25,6 @@ class MSNOnlineGamesSpider(spider.Spider):
         data = {}
         for rank in range(1, 6):
             locator = '//ol[@id="TopGamesInfo_Top10_Table"]/li[%d]/a' % rank
-            print locator
             link_element = browser.find_element_by_xpath(locator)
             link = link_element.get_attribute("href")
             title = link_element.get_text()
@@ -43,4 +42,4 @@ if __name__ == "__main__":
     crawler = spider.SpiderCrawler(MSNOnlineGamesSpider)
     crawl_result = crawler.crawl(*crawl_args)
     print json.dumps(crawl_result)
-    sys.exit(1 if crawl_result['status_code'] else 0)
+    sys.exit(1 if crawl_result['_status_code'] else 0)
