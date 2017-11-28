@@ -18,6 +18,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   games where in the top N list rather than assuming it was always 10 games
 - pep8 -> pycodestyle
 - [dev-env](https://github.com/simonsdave/dev-env) v0.4.0 -> v0.5.1
+- fixed ```msnonlinegames.py``` spider
 
 ### Removed
 
