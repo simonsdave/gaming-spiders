@@ -22,31 +22,31 @@ from setuptools import setup
 # which should be totally fine 99.9% of the time. not going to add
 # the coode complexity to deal with other scenarios
 #
-reg_ex_pattern = r"__version__\s*=\s*['\"](?P<version>[^'\"]*)['\"]"
+reg_ex_pattern = r'__version__\s*=\s*[\'"](?P<version>[^\'"]*)[\'"]'
 reg_ex = re.compile(reg_ex_pattern)
-version = ""
-with open("gaming_spiders/__init__.py", "r") as fd:
+version = ''
+with open('gaming_spiders/__init__.py', 'r') as fd:
     for line in fd:
         match = reg_ex.match(line)
         if match:
-            version = match.group("version")
+            version = match.group('version')
             break
 if not version:
     raise Exception("Can't locate project's version number")
 
 setup(
-    name="gaming_spiders",
+    name='gaming_spiders',
     packages=[
-        "gaming_spiders",
+        'gaming_spiders',
     ],
     scripts=[
     ],
     install_requires=[
-        "cloudfeaster==0.9.7",
+        'cloudfeaster==0.9.7',
     ],
     version=version,
-    description="Gaming Spiders",
-    author="Dave Simons",
-    author_email="simonsdave@gmail.com",
-    url="https://github.com/simonsdave/gaming_spiders"
+    description='Gaming Spiders',
+    author='Dave Simons',
+    author_email='simonsdave@gmail.com',
+    url='https://github.com/simonsdave/gaming_spiders'
 )
