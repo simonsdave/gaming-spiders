@@ -2,6 +2,7 @@
 #
 #   docker run simonsdave/gaming-spiders spiders.py | jq .
 #   docker run simonsdave/gaming-spiders spiderhost.py gaming_spiders.msnonlinegames.MSNOnlineGamesSpider | jq .
+#   docker run simonsdave/gaming-spiders spiders.py | jq 'keys[]' | sed 's|"||g'
 #
 
 FROM simonsdave/cloudfeaster:v0.9.7
