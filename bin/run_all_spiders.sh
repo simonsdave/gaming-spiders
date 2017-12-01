@@ -11,22 +11,17 @@ if [ $# -ne 0 ]; then
     exit 1
 fi
 
-SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
-
 EXIT_CODE=0
 
-for GAMING_SPIDER in $SCRIPT_DIR_NAME/../gaming_spiders/*.py
+for GAMING_SPIDER_NAME in $(spiders.py | jq 'keys[]' | sed 's|"||g')
 do
-    if [ -x "$GAMING_SPIDER" ]; then
-        basename "$GAMING_SPIDER"
-
-        SPIDER_OUTPUT=$(mktemp 2> /dev/null || mktemp -t DAS)
-        if ! "$GAMING_SPIDER" >& "$SPIDER_OUTPUT"; then
-            EXIT_CODE=1
-            cat "$SPIDER_OUTPUT"
-        fi
-        rm "$SPIDER_OUTPUT"
+    echo "$GAMING_SPIDER_NAME"
+    SPIDER_OUTPUT=$(mktemp 2> /dev/null || mktemp -t DAS)
+    if ! spiderhost.py "$GAMING_SPIDER_NAME" >& "$SPIDER_OUTPUT"; then
+        EXIT_CODE=1
+        cat "$SPIDER_OUTPUT"
     fi
+    rm "$SPIDER_OUTPUT"
 done
 
 exit $EXIT_CODE

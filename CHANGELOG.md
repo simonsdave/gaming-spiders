@@ -12,7 +12,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Nothing
+- ```bin/run_all_spiders.sh``` now discovers and runs spiders
+using ```spiders.py``` and ```spiderhost.py``` respectively
 
 ### Removed
 
