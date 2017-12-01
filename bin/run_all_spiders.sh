@@ -6,18 +6,52 @@
 # status code of any of the spiders fail.
 #
 
+DOCKER_IMAGE_NAME=""
+
+while true
+do
+    case "${1,,}" in
+        --image)
+            shift
+            DOCKER_IMAGE_NAME=${1:-}
+            shift
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+spiders() {
+    if [ "$DOCKER_IMAGE_NAME" == "" ]; then
+        spiders.py | jq 'keys[]' | sed 's|"||g'
+    else
+        docker run "$DOCKER_IMAGE_NAME" spiders.py | jq 'keys[]' | sed 's|"||g'
+    fi
+}
+
+run_spider() {
+    SPIDER_NAME=${1:-}
+    if [ "$DOCKER_IMAGE_NAME" == "" ]; then
+        spiderhost.py "$SPIDER_NAME"
+    else
+        docker run "$DOCKER_IMAGE_NAME" spiderhost.py "$SPIDER_NAME"
+    fi
+    return $?
+}
+
 if [ $# -ne 0 ]; then
-    echo "usage: $(basename "$0")" >&2
+    echo "usage: $(basename "$0") [--image <docker-image-name>]" >&2
     exit 1
 fi
 
 EXIT_CODE=0
 
-for GAMING_SPIDER_NAME in $(spiders.py | jq 'keys[]' | sed 's|"||g')
+for GAMING_SPIDER_NAME in $(spiders)
 do
     echo "$GAMING_SPIDER_NAME"
     SPIDER_OUTPUT=$(mktemp 2> /dev/null || mktemp -t DAS)
-    if ! spiderhost.py "$GAMING_SPIDER_NAME" >& "$SPIDER_OUTPUT"; then
+    if ! run_spider "$GAMING_SPIDER_NAME" >& "$SPIDER_OUTPUT"; then
         EXIT_CODE=1
         cat "$SPIDER_OUTPUT"
     fi
