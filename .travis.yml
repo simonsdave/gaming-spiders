@@ -22,5 +22,9 @@ script:
   - flake8
   - docker run -v "$PWD:/mnt" koalaman/shellcheck:latest $(find . -name \*.sh | grep -v \.\/env)
   - python setup.py sdist --formats=gztar
-  - if [ "$TRAVIS_BRANCH" == "master" ] || [ "$TRAVIS_TAG" != "" ]; then ./dockerfiles/build-docker-image.sh ./dist/gaming_spiders-*.*.*.tar.gz $(./dockerfiles/docker-image-name.sh "$DOCKER_USERNAME" "$TRAVIS_TAG") "$DOCKER_USERNAME" "$DOCKER_PASSWORD"; fi
-  - if [ "$TRAVIS_BRANCH" == "master" ] || [ "$TRAVIS_TAG" != "" ]; then run_all_spiders.sh --image $(./dockerfiles/docker-image-name.sh "$DOCKER_USERNAME" "$TRAVIS_TAG"); fi
+  - |
+    if [ "$TRAVIS_BRANCH" == "master" ] || [ "$TRAVIS_TAG" != "" ]; then
+      DOCKER_IMAGE_NAME=$(./dockerfiles/docker-image-name.sh "$DOCKER_USERNAME" "$TRAVIS_TAG")
+      ./dockerfiles/build-docker-image.sh ./dist/gaming_spiders-*.*.*.tar.gz "$DOCKER_IMAGE_NAME" "$DOCKER_USERNAME" "$DOCKER_PASSWORD"
+      run_all_spiders.sh --image "$DOCKER_IMAGE_NAME"
+    fi
