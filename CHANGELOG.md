@@ -16,7 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 using ```spiders.py``` and ```spiderhost.py``` respectively
 - ```bin/run_all_spiders.sh``` can now run spiders directly
 or inside a docker container
-- cloudfeaster 0.9.7 -> 0.9.8
+- cloudfeaster 0.9.7 -> 0.9.9
 
 ### Removed
 
