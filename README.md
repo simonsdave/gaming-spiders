@@ -78,3 +78,4 @@ describe how to setup your development environment and
 start contributing to these spiders
 * [this](https://github.com/simonsdave/cloudfeaster/blob/master/docs/spider_authors.md) describes
 how to author spiders using Cloudfeaster
+* see [this](https://github.com/simonsdave/cloudfeaster/blob/master/docs/story.md) for some background on the Cloudfeaster project
