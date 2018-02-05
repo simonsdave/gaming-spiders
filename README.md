@@ -11,222 +11,70 @@ spiders for various gaming services.
 
 ## Getting Started
 
-```bash
->cd
->git clone https://github.com/simonsdave/gaming-spiders.git
-Cloning into 'gaming-spiders'...
-remote: Counting objects: 31, done.
-remote: Compressing objects: 100% (25/25), done.
-remote: Total 31 (delta 9), reused 13 (delta 1), pack-reused 0
-Unpacking objects: 100% (31/31), done.
-Checking connectivity... done.
->cd gaming-spiders/
->source cfg4dev
-<<<snip lots>>>
-(env)>cd gaming_spiders
-(env)>./miniclip.py | jq .
-{
-  "status": "Ok",
-  "status_code": 0,
-  "data": {
-    "1": {
-      "link": "http://www.miniclip.com/games/8-ball-pool-multiplayer/en/#t-w-t",
-      "title": "8 Ball Pool"
-    },
-    "2": {
-      "link": "http://www.miniclip.com/games/agar-io/en/#t-w-t",
-      "title": "Agar.io"
-    },
-    "3": {
-      "link": "http://www.miniclip.com/games/contract-wars/en/#t-w-t",
-      "title": "Contract Wars"
-    },
-    "4": {
-      "link": "http://www.miniclip.com/games/empire/en/#t-w-t",
-      "title": "Empire"
-    },
-    "5": {
-      "link": "http://www.miniclip.com/games/adventure-capitalist/en/#t-w-t",
-      "title": "AdVenture Capitalist"
-    },
-    "6": {
-      "link": "http://www.miniclip.com/games/game-of-thrones-ascent/en/#t-w-t",
-      "title": "Game of Thrones Ascent"
-    },
-    "7": {
-      "link": "http://www.miniclip.com/games/soccer-stars-mobile/en/#t-w-t",
-      "title": "Soccer Stars Mobile"
-    },
-    "8": {
-      "link": "http://www.miniclip.com/games/tanki-online/en/#t-w-t",
-      "title": "Tanki Online"
-    },
-    "9": {
-      "link": "http://www.miniclip.com/games/free-running-2/en/#t-w-t",
-      "title": "Free Running 2"
-    },
-    "10": {
-      "link": "http://www.miniclip.com/games/bike-rivals/en/#t-w-t",
-      "title": "Bike Rivals"
-    }
-  }
-}
-(env)>
-```
+First follow [these](dev_env/README.md) instructions to get your development environment setup.
 
-## Running Spiders on [ECS](https://github.com/simonsdave/ecs) Deployment
-
-Discover available spiders.
-Steps below assume the environment variables ```ECS_ENDPOINT```, ```ECS_KEY``` and ```ECS_SECRET```
-have already been set.
+Now let's run one of the spiders.
 
 ```bash
->cat gaming-spiders.json
+(env) ~/gaming-spiders> cd gaming_spiders
+(env) ~/gaming-spiders/gaming_spiders> ./miniclip.py | jq .
 {
-  "docker_image": "simonsdave/gaming-spiders:latest",
-  "cmd": [
-    "spiders.py"
-  ]
+  "1": {
+    "link": "https://www.miniclip.com/games/8-ball-pool-multiplayer/en/#t-w-t-H",
+    "title": "8 Ball Pool"
+  },
+  "2": {
+    "link": "https://www.miniclip.com/games/agar-io/en/#t-w-t-H",
+    "title": "Agar.io"
+  },
+  "3": {
+    "link": "https://www.miniclip.com/games/tanki-online/en/#t-w-t-H",
+    "title": "Tanki Online"
+  },
+  "4": {
+    "link": "https://www.miniclip.com/games/diepio/en/#t-w-t-H",
+    "title": "Diep.io"
+  },
+  "5": {
+    "link": "https://www.miniclip.com/games/brutesio/en/#t-w-t-H",
+    "title": "Brutes.io"
+  },
+  "6": {
+    "link": "https://www.miniclip.com/games/soccer-stars-mobile/en/#t-w-t-H",
+    "title": "Soccer Stars Mobile"
+  },
+  "7": {
+    "link": "https://www.miniclip.com/games/flip-master/en/#t-w-t-H",
+    "title": "Flip Master"
+  },
+  "8": {
+    "link": "https://www.miniclip.com/games/bubble-trouble/en/#t-w-t-H",
+    "title": "Bubble Trouble"
+  },
+  "9": {
+    "link": "https://www.miniclip.com/games/happy-wheels/en/#t-w-t-H",
+    "title": "Happy Wheels"
+  },
+  "10": {
+    "link": "https://www.miniclip.com/games/empire/en/#t-w-t-H",
+    "title": "Empire"
+  },
+  "_crawl_time": "2018-02-05T20:24:20.683306+00:00",
+  "_status_code": 0,
+  "_spider": {
+    "version": "sha1:aaa69d021a88990ed1404119a699d76c55cf42d3",
+    "name": "__main__.MiniclipSpider"
+  },
+  "_status": "Ok",
+  "_crawl_time_in_ms": 11218
 }
->curl \
-   -s \
-   -u $ECS_KEY:$ECS_SECRET \
-   -X POST \
-   -H "Content-Type: application/json" \
-   --data-binary @gaming_spiders.json \
-   $ECS_ENDPOINT/v1.1/tasks | \
-   jq .stdout | \
-   sed -e 's|"||g' | \
-   base64 --decode | \
-   jq .
-{
- "gaming_spiders.mindgames.MindGamesSpider": {
-   "url": "http://www.mindgames.com/?sort=mostPlayed",
-   "factor_display_names": {},
-   "ttl": 60,
-   "factor_display_order": []
- },
- "gaming_spiders.gamehouseonlinegames.GamehouseOnlineGamesSpider": {
-   "url": "http://www.gamehouse.com/online-top-100-games?platform=online-games",
-   "factor_display_names": {},
-   "ttl": 60,
-   "factor_display_order": []
- },
- "gaming_spiders.hiddenobjectgames.HiddenObjectGamesSpider": {
-   "url": "http://www.hiddenobjectgames.com/?sort=mostPlayed",
-   "factor_display_names": {},
-   "ttl": 60,
-   "factor_display_order": []
- },
- "gaming_spiders.match3games.Match3GamesSpider": {
-   "url": "http://www.match3games.com/?sort=mostPlayed",
-   "factor_display_names": {},
-   "ttl": 60,
-   "factor_display_order": []
- },
- "gaming_spiders.solitaireonline.SolitaireOnlineSpider": {
-   "url": "http://www.solitaireonline.com/?sort=mostPlayed",
-   "factor_display_names": {},
-   "ttl": 60,
-   "factor_display_order": []
- },
- "gaming_spiders.gamesonly.GamesonlySpider": {
-   "url": "http://www.gamesonly.net/",
-   "factor_display_names": {},
-   "ttl": 60,
-   "factor_display_order": []
- },
- "gaming_spiders.mahjonggames.MahjongGamesSpider": {
-   "url": "http://www.mahjonggames.com/?sort=mostPlayed",
-   "factor_display_names": {},
-   "ttl": 60,
-   "factor_display_order": []
- },
- "gaming_spiders.miniclip.MiniclipSpider": {
-   "url": "http://www.miniclip.com/games/en/",
-   "factor_display_names": {},
-   "ttl": 60,
-   "factor_display_order": []
- },
- "gaming_spiders.bigfishonlinegames.BigFishOnlineGamesSpider": {
-   "url": "http://www.bigfishgames.com/online-games/index.html",
-   "factor_display_names": {},
-   "ttl": 60,
-   "factor_display_order": []
- }
-}
+(env) ~/gaming-spiders/gaming_spiders>
 ```
 
-Now we know what spiders are available.
-Let's run the [Miniclip](http://www.miniclip.com/games/en/) spider.
+## What Next
 
-```bash
->cat cat gaming_spider.json
-{
-  "docker_image": "simonsdave/gaming-spiders:latest",
-  "cmd": [
-    "spiderhost.sh",
-    "gaming_spiders.miniclip.MiniclipSpider"
-  ]
-}
->curl \
-   -s \
-   -u $ECS_KEY:$ECS_SECRET \
-   -X POST \
-   -H "Content-Type: application/json" \
-   --data-binary @gaming_spider.json \
-   $ECS_ENDPOINT/v1.1/tasks | \
-   jq .stdout | \
-   sed -e 's|"||g' | \
-   base64 --decode | \
-   jq .
-{
- "1": {
-   "link": "http://www.miniclip.com/games/diepio/en/#t-w-t-H",
-   "title": "Diep.io"
- },
- "2": {
-   "link": "http://www.miniclip.com/games/8-ball-pool-multiplayer/en/#t-w-t-H",
-   "title": "8 Ball Pool"
- },
- "3": {
-   "link": "http://www.miniclip.com/games/slitherio/en/#t-w-t-H",
-   "title": "Slither.io"
- },
- "4": {
-   "link": "http://www.miniclip.com/games/tanki-online/en/#t-w-t-H",
-   "title": "Tanki Online"
- },
- "5": {
-   "link": "http://www.miniclip.com/games/agar-io/en/#t-w-t-H",
-   "title": "Agar.io"
- },
- "6": {
-   "link": "http://www.miniclip.com/games/soccer-stars-mobile/en/#t-w-t-H",
-   "title": "Soccer Stars Mobile"
- },
- "7": {
-   "link": "http://www.miniclip.com/games/soccer-physics/en/#t-w-t-H",
-   "title": "Soccer Physics"
- },
- "8": {
-   "link": "http://www.miniclip.com/games/basketball-stars/en/#t-w-t-H",
-   "title": "Basketball Stars"
- },
- "9": {
-   "link": "http://www.miniclip.com/games/super-soccer-noggins/en/#t-w-t-H",
-   "title": "Super Soccer Noggins"
- },
- "10": {
-   "link": "http://www.miniclip.com/games/color-switch/en/#t-w-t-H",
-   "title": "Color Switch"
- },
- "spider": {
-   "version": "ae6287c4047e9371e66ff8426b7818418b2d3de5",
-   "name": "gaming_spiders.miniclip.MiniclipSpider"
- },
- "crawl_time_in_ms": 6411,
- "status": "Ok",
- "status_code": 0
-}
-```
+* see [these](docs/contributing.md) instructions
+describe how to setup your development environment and
+start contributing to these spiders
+* [this](https://github.com/simonsdave/cloudfeaster/blob/master/docs/spider_authors.md) describes
+how to author spiders using Cloudfeaster
