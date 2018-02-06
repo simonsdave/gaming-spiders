@@ -3,7 +3,7 @@
 #
 #   >git clone https://github.com/simonsdave/gaming_spiders.git
 #   >cd gaming_spiders
-#   >python setup.py sdist --formats=gztar
+#   >python setup.py bdist_wheel sdist --formats=gztar sdist --formats=gztar
 #
 
 import re
