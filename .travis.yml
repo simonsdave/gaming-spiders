@@ -4,6 +4,8 @@ python:
 sudo: required
 services:
   - docker
+env:
+  - DOCKER_TEMP_IMAGE_NAME=simonsdave/gaming-spiders:bindle
 install:
   - source cfg4dev
   - docker pull koalaman/shellcheck:latest
