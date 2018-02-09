@@ -252,37 +252,19 @@ Your branch is up-to-date with 'origin/master'.
 ```
 
 ```bash
-(env) ~/gaming-spiders> twine upload dist/* -r testpypi
-Uploading distributions to https://test.pypi.org/legacy/
-Uploading cloudfeaster-0.9.8-py2-none-any.whl
-Uploading cloudfeaster-0.9.8.tar.gz
-(env) ~/gaming-spiders>
-```
-
-Now look on [https://test.pypi.org/project/cloudfeaster/](https://test.pypi.org/project/cloudfeaster/) to confirm all is ok and if it is upload to the real version of pypi.
-
-```bash
-(env) ~/gaming-spiders> twine upload dist/*
-Uploading distributions to https://upload.pypi.org/legacy/
-Uploading cloudfeaster-0.9.8-py2-none-any.whl
-Uploading cloudfeaster-0.9.8.tar.gz
-(env) ~/gaming-spiders>
-```
-
-```bash
 (env) ~/gaming-spiders> cd dist/
 (env) ~/gaming-spiders/dist> cp * /vagrant/.
-(env) ~/gaming-spiders/dist> ls -la /vagrant/cloudfeaster*
--rw-r--r-- 1 vagrant vagrant 18987 Jan 10 14:19 /vagrant/cloudfeaster-0.9.8-py2-none-any.whl
--rw-r--r-- 1 vagrant vagrant 15642 Jan 10 14:19 /vagrant/cloudfeaster-0.9.8.tar.gz
+(env) ~/gaming-spiders/dist> ls -la /vagrant/gaming_spiders*
+-rw-rw-r--  1 vagrant vagrant 9329 Feb  9 15:32 gaming_spiders-1.2.0-py2-none-any.whl
+-rw-rw-r--  1 vagrant vagrant 4274 Feb  9 15:32 gaming_spiders-1.2.0.tar.gz
 (env) ~/gaming-spiders>
 ```
 
-* on the [releases](https://github.com/simonsdave/cloudfeaster/releases)
+* on the [releases](https://github.com/simonsdave/gaming-spiders/releases)
 page hit the <Draft a new release> button in the upper right corner
 * fill out the release form as per the screenshot below
 * main body of the form can be pulled directly from [CHANGELOG.md](../CHANGELOG.md)
-* don't forget to attach to the release the ```cloudfeaster-*.whl``` and ```cloudfeaster-*.tar.gz```
+* don't forget to attach to the release the ```gaming-spiders-*.whl``` and ```gaming-spiders-*.tar.gz```
 copied to ```/vagrant``` in one of the above steps
 
 ![](release-form.png)
