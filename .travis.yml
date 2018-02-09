@@ -13,8 +13,12 @@ script:
   - pycodestyle
   - flake8
   - docker run -v "$PWD:/mnt" koalaman/shellcheck:latest $(find . -name \*.sh | grep -v \.\/env)
+  - travis_fold start "build.python.packages"
   - python setup.py bdist_wheel sdist --formats=gztar
+  - travis_fold end "build.python.packages"
+  - travis_fold start "build.docker.image"
   - ./dockerfiles/build-docker-image.sh ./dist/gaming_spiders-*.*.*.tar.gz $DOCKER_TEMP_IMAGE_NAME
+  - travis_fold end "build.docker.image"
   - run_all_spiders.sh --image $DOCKER_TEMP_IMAGE_NAME
 deploy:
   - provider: script
