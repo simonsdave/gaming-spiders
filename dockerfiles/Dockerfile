@@ -9,6 +9,8 @@ FROM simonsdave/cloudfeaster:v0.9.10
 
 MAINTAINER Dave Simons
 
+ENV DEBIAN_FRONTEND noninteractive
+
 # simonsdave/cloudfeaster:v0.9.7 sets the user to headless
 # and if we don't reset back to root pip install of
 # spiders.tar.gz will fail - notice @ the end of this
@@ -21,3 +23,5 @@ RUN pip install --process-dependency-links /tmp/spiders/spiders.tar.gz
 RUN rm -rf /tmp/spiders
 
 USER headless
+
+ENV DEBIAN_FRONTEND newt
