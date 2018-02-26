@@ -40,7 +40,6 @@ Run 'do-release-upgrade' to upgrade to it.
 
 ~>
 ```
-```
 
 Start the ssh-agent in the background.
 
