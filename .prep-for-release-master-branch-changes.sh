@@ -24,6 +24,4 @@ NEXT_VERSION=$(python -c "import semantic_version; print semantic_version.Versio
 
 sed -i -e "s|^\\s*__version__\\s*=\\s*['\"]${CURRENT_VERSION}['\"]\\s*$|__version__ = '${NEXT_VERSION}'|g" "${INIT_DOT_PY}"
 
-sed -i -e "s|^\\s*__version__\\s*=\\s*['\"]$CURRENT_VERSION['\"]\\s*$|__version__ = '$NEXT_VERSION'|g" "$INIT_DOT_PY"
-
 exit 0
