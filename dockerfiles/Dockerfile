@@ -5,7 +5,7 @@
 #   docker run simonsdave/gaming-spiders spiders.py | jq 'keys[]' | sed 's|"||g'
 #
 
-FROM simonsdave/cloudfeaster:v0.9.10
+FROM simonsdave/cloudfeaster:v0.9.12
 
 MAINTAINER Dave Simons
 
