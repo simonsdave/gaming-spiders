@@ -26,7 +26,7 @@ spiders() {
     if [ "$DOCKER_IMAGE_NAME" == "" ]; then
         spiders.py | jq 'keys[]' | sed 's|"||g'
     else
-        docker run "$DOCKER_IMAGE_NAME" spiders.py | jq 'keys[]' | sed 's|"||g'
+        docker run --rm --security-opt seccomp:unconfined "$DOCKER_IMAGE_NAME" spiders.py | jq 'keys[]' | sed 's|"||g'
     fi
 }
 
@@ -35,7 +35,7 @@ run_spider() {
     if [ "$DOCKER_IMAGE_NAME" == "" ]; then
         spiderhost.py "$SPIDER_NAME"
     else
-        docker run "$DOCKER_IMAGE_NAME" spiderhost.py "$SPIDER_NAME"
+        docker run --rm --security-opt seccomp:unconfined "$DOCKER_IMAGE_NAME" spiderhost.py "$SPIDER_NAME"
     fi
     return $?
 }
