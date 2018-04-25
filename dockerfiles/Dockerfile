@@ -1,11 +1,11 @@
 # for testing/debugging
 #
-#   docker run simonsdave/gaming-spiders spiders.py | jq .
-#   docker run simonsdave/gaming-spiders spiderhost.py gaming_spiders.msnonlinegames.MSNOnlineGamesSpider | jq .
-#   docker run simonsdave/gaming-spiders spiders.py | jq 'keys[]' | sed 's|"||g'
+#   docker run --rm simonsdave/gaming-spiders spiders.py | jq .
+#   docker run --rm simonsdave/gaming-spiders spiders.py | jq 'keys[]' | sed 's|"||g'
+#   docker run --rm --security-opt seccomp:unconfined simonsdave/gaming-spiders spiderhost.py gaming_spiders.msnonlinegames.MSNOnlineGamesSpider | jq .
 #
 
-FROM simonsdave/cloudfeaster:v0.9.12
+FROM simonsdave/cloudfeaster:v0.9.13
 
 MAINTAINER Dave Simons
 

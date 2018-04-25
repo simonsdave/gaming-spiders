@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- cloudfeaster 0.9.10 -> 0.9.11
+- cloudfeaster 0.9.10 -> 0.9.13
 
 ### Removed
 
