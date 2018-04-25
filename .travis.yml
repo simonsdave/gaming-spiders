@@ -9,6 +9,18 @@ env:
 install:
   - source cfg4dev
   - docker pull koalaman/shellcheck:latest
+  # install the lastest version of chrome
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - sudo dpkg -i google-chrome*.deb
+  - google-chrome --version
+  - rm google-chrome*.deb
+  # install chromedriver
+  - curl -s --output chromedriver.zip http://chromedriver.storage.googleapis.com/2.38/chromedriver_linux64.zip
+  - unzip chromedriver.zip
+  - sudo mv chromedriver /usr/local/bin/.
+  - sudo chown root.root /usr/local/bin/chromedriver
+  - sudo chmod a+x /usr/local/bin/chromedriver
+  - rm chromedriver.zip
 script:
   - pip check
   - flake8
