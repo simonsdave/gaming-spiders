@@ -5,7 +5,7 @@
 #   docker run --rm --security-opt seccomp:unconfined simonsdave/gaming-spiders spiderhost.py gaming_spiders.msnonlinegames.MSNOnlineGamesSpider | jq .
 #
 
-FROM simonsdave/cloudfeaster:v0.9.13
+FROM simonsdave/cloudfeaster:v0.9.14
 
 MAINTAINER Dave Simons
 
