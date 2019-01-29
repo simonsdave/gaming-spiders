@@ -73,6 +73,9 @@ Configure the development environment.
 
 ```bash
 ~> cd gaming-spiders/
+```
+
+```bash
 ~/gaming-spiders> source cfg4dev
 New python executable in env/bin/python
 Installing setuptools, pip...done.
