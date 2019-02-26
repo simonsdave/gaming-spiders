@@ -1,5 +1,5 @@
 # See setup.py
 -e .
 # the packages below are required for development
-flake8==3.7.6
+flake8==3.7.7
 pycodestyle==2.5.0
