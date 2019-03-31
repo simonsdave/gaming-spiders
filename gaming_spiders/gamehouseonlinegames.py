@@ -5,7 +5,12 @@ import json
 import sys
 
 from cloudfeaster import spider
-from cloudfeaster import webdriver_spider
+
+user_agent = (
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) '
+    'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 '
+    'Safari/537.36'
+)
 
 
 class GamehouseOnlineGamesSpider(spider.Spider):
@@ -16,16 +21,7 @@ class GamehouseOnlineGamesSpider(spider.Spider):
             'url': 'http://www.gamehouse.com/online-top-100-games?platform=online-games',
         }
 
-    def crawl(self):
-        user_agent = (
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) '
-            'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 '
-            'Safari/537.36'
-        )
-        with webdriver_spider.Browser(self.url, user_agent) as browser:
-            return self._crawl(browser)
-
-    def _crawl(self, browser):
+    def crawl(self, browser):
 
         data = {}
 
@@ -56,4 +52,4 @@ if __name__ == "__main__":
     crawler = spider.SpiderCrawler(GamehouseOnlineGamesSpider)
     crawl_result = crawler.crawl(*crawl_args)
     print json.dumps(crawl_result)
-    sys.exit(1 if crawl_result['_status_code'] else 0)
+    sys.exit(1 if crawl_result.status_code else 0)

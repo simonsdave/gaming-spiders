@@ -1,6 +1,8 @@
 *.pyc
+*.rst
 build
 dist
 env
 gaming_spiders.egg-info
 .vagrant
+.coverage

@@ -5,7 +5,6 @@ import json
 import sys
 
 from cloudfeaster import spider
-from cloudfeaster import webdriver_spider
 
 
 class MSNOnlineGamesSpider(spider.Spider):
@@ -16,11 +15,7 @@ class MSNOnlineGamesSpider(spider.Spider):
             'url': 'http://zone.msn.com/en-us/home',
         }
 
-    def crawl(self):
-        with webdriver_spider.Browser(self.url) as browser:
-            return self._crawl(browser)
-
-    def _crawl(self, browser):
+    def crawl(self, browser):
 
         data = {}
         for rank in range(1, 6):
@@ -42,4 +37,4 @@ if __name__ == "__main__":
     crawler = spider.SpiderCrawler(MSNOnlineGamesSpider)
     crawl_result = crawler.crawl(*crawl_args)
     print json.dumps(crawl_result)
-    sys.exit(1 if crawl_result['_status_code'] else 0)
+    sys.exit(1 if crawl_result.status_code else 0)

@@ -1,0 +1,24 @@
+FROM simonsdave/cloudfeaster-xenial-dev-env:%CLF_VERSION%
+
+LABEL maintainer="Dave Simons"
+
+ENV DEBIAN_FRONTEND noninteractive
+
+USER root
+
+COPY requirements.txt /tmp/requirements.txt
+COPY setup.py /tmp/setup.py
+RUN mkdir /tmp/gaming_spiders
+COPY gaming_spiders/__init__.py /tmp/gaming_spiders/__init__.py
+
+RUN cd /tmp && \
+    pip install --requirement "/tmp/requirements.txt"
+
+RUN rm "/tmp/setup.py" && \
+    rm "/tmp/requirements.txt" && \
+    rm -r "/tmp/gaming_spiders" && \
+    rm -r "/tmp/gaming_spiders.egg-info"
+
+USER headless
+
+ENV DEBIAN_FRONTEND newt

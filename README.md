@@ -1,10 +1,10 @@
 # gaming-spiders
+
 ![Maintained](https://img.shields.io/maintenance/yes/2019.svg)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 ![Python 2.7](https://img.shields.io/badge/python-2.7-FFC100.svg?style=flat)
 [![Requirements Status](https://requires.io/github/simonsdave/gaming-spiders/requirements.svg?branch=master)](https://requires.io/github/simonsdave/gaming-spiders/requirements/?branch=master)
 [![Build Status](https://travis-ci.org/simonsdave/gaming-spiders.svg?branch=master)](https://travis-ci.org/simonsdave/gaming-spiders)
-[![docker-simonsdave](https://img.shields.io/badge/docker-simonsdave%2Fgaming%20spiders-blue.svg)](https://hub.docker.com/r/simonsdave/gaming-spiders/)
 
 A collection of [Cloudfeaster](https://github.com/simonsdave/cloudfeaster)
 spiders for various gaming services.

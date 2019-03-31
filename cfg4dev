@@ -1,9 +1,5 @@
-configure_dev_env()
-{
-    if [ ! -f "$PWD/requirements.txt" ]; then
-        echo "Must source this script from project's root directory" >&2
-        return 1
-    fi
+if [ -f "$PWD/requirements.txt" ]; then
+    export DEV_ENV_DOCKER_IMAGE=simonsdave/gaming-spiders-xeniel-dev-env:build
 
     if [ -d "$PWD/env" ]; then
         source "$PWD/env/bin/activate"
@@ -11,12 +7,17 @@ configure_dev_env()
         virtualenv env
         source "$PWD/env/bin/activate"
 
-        pip install --requirement "$PWD/requirements.txt"
+        pip install --upgrade pip
+
+        "$PWD/dev_env/build-docker-image.sh" "$DEV_ENV_DOCKER_IMAGE"
+
+        DEV_ENV_VERSION=$(docker inspect "$DEV_ENV_DOCKER_IMAGE" | jq -r '.[0].ContainerConfig.Labels."dev-env-version"')
+        if [ "${DEV_ENV_VERSION:-}" == "latest" ]; then DEV_ENV_VERSION=master; fi
+        pip install "git+https://github.com/simonsdave/dev-env.git@$DEV_ENV_VERSION"
+        unset DEV_ENV_VERSION
     fi
     export PATH="$PWD/bin":$PATH
-    export PYTHONPATH="$PWD"
-
-    return 0
-}
-
-configure_dev_env
+else
+    echo "Must source this script from project's root directory" >&2
+    return 1
+fi
