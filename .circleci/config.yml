@@ -11,12 +11,6 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          name: Install Chrome
-          command: bin/install_chrome.sh
-      - run:
-          name: Install Chromedriver
-          command: bin/install_chromedriver.sh
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
