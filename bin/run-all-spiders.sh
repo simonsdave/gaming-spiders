@@ -24,7 +24,7 @@ fi
 
 EXIT_CODE=0
 
-for SPIDER_FILENAME in $(repo-root-dir.sh)/$(repo.sh -u)/*.py
+for SPIDER_FILENAME in "$(repo-root-dir.sh)"/"$(repo.sh -u)"/*.py
 do
     if [ ! -x "$SPIDER_FILENAME" ]; then
         if [ "1" -eq "${VERBOSE:-0}" ]; then
@@ -33,7 +33,7 @@ do
         continue
     fi
 
-    SPIDER_NAME=$(basename ${SPIDER_FILENAME/.py/})
+    SPIDER_NAME=$(basename "${SPIDER_FILENAME/.py/}")
     echo "$SPIDER_NAME"
 
     SPIDER_OUTPUT=$(mktemp 2> /dev/null || mktemp -t DAS)
