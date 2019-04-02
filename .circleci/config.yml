@@ -3,7 +3,7 @@ version: 2
 _defaults: &defaults
   working_directory: ~/repo
   docker:
-  - image: simonsdave/cloudfeaster-xenial-dev-env:v0.9.15
+  - image: simonsdave/cloudfeaster-xenial-dev-env:v0.9.16
 
 jobs:
   build_test_and_save_artifacts:
@@ -33,8 +33,6 @@ jobs:
       - run: 
           name: Run unit tests
           command: run-unit-tests.sh
-          environment:
-            CLF_CHROME_OPTIONS: --headless,--window-size=1280x1024,--no-sandbox
       - run: 
           name: Build python packages
           command: build-python-package.sh

@@ -19,6 +19,4 @@ RUN rm "/tmp/setup.py" && \
     rm -r "/tmp/gaming_spiders" && \
     rm -r "/tmp/gaming_spiders.egg-info"
 
-USER headless
-
 ENV DEBIAN_FRONTEND newt
