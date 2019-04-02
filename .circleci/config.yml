@@ -17,7 +17,7 @@ jobs:
             - v1-dependencies-
       - run:
           name: Install Python prerequisites
-          command: sudo pip install --requirement requirements.txt
+          command: pip install --requirement requirements.txt
       - save_cache:
           paths:
             - ./env
