@@ -15,7 +15,7 @@ TEMP_DOCKERFILE=$(mktemp 2> /dev/null || mktemp -t DAS)
 cp "$SCRIPT_DIR_NAME/Dockerfile.template" "$TEMP_DOCKERFILE"
 
 CONTEXT_DIR=$(mktemp -d 2> /dev/null || mktemp -d -t DAS)
-pushd "${SCRIPT_DIR_NAME}/.." > /dev/null && tar cf "${CONTEXT_DIR}/package.tar" . && popd > /dev/null
+pushd "${SCRIPT_DIR_NAME}/.." > /dev/null && tar zcf "${CONTEXT_DIR}/package.tar.gz" . && popd > /dev/null
 
 CLF_VERSION=$(grep cloudfeaster== "${SCRIPT_DIR_NAME}/../setup.py" | sed -e "s|^[[:space:]]*['\"]cloudfeaster==||g" | sed -e "s|['\"].*$||g")
 sed \
