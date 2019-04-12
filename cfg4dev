@@ -9,12 +9,9 @@ if [ -f "$PWD/requirements.txt" ]; then
 
         pip install --upgrade pip
 
-        "$PWD/dev_env/build-docker-image.sh" "$DEV_ENV_DOCKER_IMAGE"
+        curl -s -L https://raw.githubusercontent.com/simonsdave/cloudfeaster/master/install.sh | bash -s --
 
-        DEV_ENV_VERSION=$(docker inspect "$DEV_ENV_DOCKER_IMAGE" | jq -r '.[0].ContainerConfig.Labels."dev-env-version"')
-        if [ "${DEV_ENV_VERSION:-}" == "latest" ]; then DEV_ENV_VERSION=master; fi
-        pip install "git+https://github.com/simonsdave/dev-env.git@$DEV_ENV_VERSION"
-        unset DEV_ENV_VERSION
+        "$PWD/dev_env/build-docker-image.sh" "$DEV_ENV_DOCKER_IMAGE"
     fi
     export PATH="$PWD/bin":$PATH
 else
