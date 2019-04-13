@@ -9,7 +9,7 @@ if [ -f "$PWD/requirements.txt" ]; then
 
         pip install --upgrade pip
 
-        curl -s -L https://raw.githubusercontent.com/simonsdave/cloudfeaster/master/install.sh | bash -s --
+        curl -s -L https://raw.githubusercontent.com/simonsdave/cloudfeaster/master/bin/install-dev-env-scripts.sh | bash -s --
 
         "$PWD/dev_env/build-docker-image.sh" "$DEV_ENV_DOCKER_IMAGE"
     fi
