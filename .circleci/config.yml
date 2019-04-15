@@ -1,9 +1,10 @@
+---
 version: 2
 
 _defaults: &defaults
   working_directory: ~/repo
   docker:
-  - image: simonsdave/cloudfeaster-xenial-dev-env:v0.9.16
+    - image: simonsdave/cloudfeaster-xenial-dev-env:v0.9.17
 
 jobs:
   build_test_and_save_artifacts:
@@ -24,19 +25,19 @@ jobs:
           key: v1-dependencies-{{ checksum "requirements.txt" }}
       - run: run-pip-check.sh
       - run: run-flake8.sh
-      - run: 
+      - run:
           name: Lint bash scripts
           command: run-shellcheck.sh -v
-      - run: 
+      - run:
           name: Scan repo for passwords, private keys, etc.
           command: run-repo-security-scanner.sh
       - run:
           name: Snyk vulnerability assessment
           command: run-snyk.sh "$SNYK_TOKEN"
-      - run: 
+      - run:
           name: Run unit tests
           command: run-unit-tests.sh
-      - run: 
+      - run:
           name: Build python packages
           command: build-python-package.sh
 
