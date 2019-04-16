@@ -1,5 +1,5 @@
 ---
-version: 2
+version: 2.1
 
 jobs:
   build_test_and_save_artifacts:
@@ -45,3 +45,9 @@ jobs:
       - store_artifacts:
           path: ./dist
           destination: dist
+
+workflows:
+  build_test_and_save_artifacts:
+    jobs:
+      - build_test_and_save_artifacts:
+          context: gaming-spiders
