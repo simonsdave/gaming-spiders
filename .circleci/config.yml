@@ -45,6 +45,8 @@ jobs:
       - run:
           name: Build python packages
           command: build-python-package.sh
+      - store_artifacts:
+          path: ./dist
 
 workflows:
   version: 2
