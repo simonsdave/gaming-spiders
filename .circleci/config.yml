@@ -1,14 +1,11 @@
 ---
 version: 2
 
-_defaults: &defaults
-  working_directory: ~/repo
-  docker:
-    - image: simonsdave/cloudfeaster-xenial-dev-env:v0.9.17
-
 jobs:
   build_test_and_save_artifacts:
-    <<: *defaults
+    working_directory: ~/repo
+    docker:
+      - image: simonsdave/cloudfeaster-xenial-dev-env:v0.9.17
 
     steps:
       - checkout
@@ -48,10 +45,3 @@ jobs:
       - store_artifacts:
           path: ./dist
           destination: dist
-
-workflows:
-  version: 2
-  build_test_and_save_artifacts:
-    jobs:
-      - build_test_and_save_artifacts:
-          context: gaming-spiders
