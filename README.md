@@ -4,7 +4,7 @@
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 ![Python 2.7](https://img.shields.io/badge/python-2.7-FFC100.svg?style=flat)
 [![Requirements Status](https://requires.io/github/simonsdave/gaming-spiders/requirements.svg?branch=master)](https://requires.io/github/simonsdave/gaming-spiders/requirements/?branch=master)
-[![CircleCI](https://circleci.com/gh/simonsdave/gaming-spiders.svg?style=svg)](https://circleci.com/gh/simonsdave/gaming-spiders)
+[![CircleCI](https://circleci.com/gh/simonsdave/gaming-spiders.svg?style=shield)](https://circleci.com/gh/simonsdave/gaming-spiders)
 [![Vulnerabilities](https://snyk.io/test/github/simonsdave/gaming-spiders/badge.svg)](https://snyk.io/test/github/simonsdave/gaming-spiders)
 
 A collection of [Cloudfeaster](https://github.com/simonsdave/cloudfeaster)
