@@ -49,6 +49,9 @@ jobs:
       - run:
           name: Build python packages
           command: build-python-package.sh
+      - run:
+          name: Run All Spiders
+          command: run-all-spiders.sh
       - store_artifacts:
           path: ./dist
           destination: dist
