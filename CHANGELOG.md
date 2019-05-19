@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- add ```check-consistent-clf-version.sh``` to the CircelCI pipeline
 - add ```run-bandit.sh``` to the CircleCI pipeline
 
 ### Changed
