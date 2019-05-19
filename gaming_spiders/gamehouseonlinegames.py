@@ -6,12 +6,6 @@ import sys
 
 from cloudfeaster import spider
 
-user_agent = (
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) '
-    'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 '
-    'Safari/537.36'
-)
-
 
 class GamehouseOnlineGamesSpider(spider.Spider):
 
