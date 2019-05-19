@@ -2,8 +2,6 @@ FROM simonsdave/cloudfeaster-xenial-dev-env:%CLF_VERSION%
 
 LABEL maintainer="Dave Simons"
 
-ARG PACKAGE
-
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN mkdir /tmp/package
