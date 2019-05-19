@@ -19,7 +19,7 @@ class GamehouseOnlineGamesSpider(spider.Spider):
 
         data = {}
 
-        for rank in range(1, 21):
+        for rank in range(1, 11):
             link_locator_fmt = "//li[@id='game_%d' and @class='gamebox_big']/a"
             link_locator = link_locator_fmt % rank
             link_element = browser.find_element_by_xpath(link_locator)
