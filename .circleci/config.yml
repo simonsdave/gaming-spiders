@@ -76,6 +76,17 @@ jobs:
       - run:
           name: run spider
           command: gamehouseonlinegames.py
+  run_spider_gamesonly:
+    executor: dev-env
+    steps:
+      - attach_workspace:
+          at: dist
+      - run:
+          name: spider install from dist
+          command: pip install dist/gaming_spiders*.tar.gz
+      - run:
+          name: run spider
+          command: gamesonly.py
   run_spider_hiddenobjectgames:
     executor: dev-env
     steps:
@@ -87,6 +98,72 @@ jobs:
       - run:
           name: run spider
           command: hiddenobjectgames.py
+  run_spider_mahjonggames:
+    executor: dev-env
+    steps:
+      - attach_workspace:
+          at: dist
+      - run:
+          name: spider install from dist
+          command: pip install dist/gaming_spiders*.tar.gz
+      - run:
+          name: run spider
+          command: mahjonggames.py
+  run_spider_match3games:
+    executor: dev-env
+    steps:
+      - attach_workspace:
+          at: dist
+      - run:
+          name: spider install from dist
+          command: pip install dist/gaming_spiders*.tar.gz
+      - run:
+          name: run spider
+          command: match3games.py
+  run_spider_mindgames:
+    executor: dev-env
+    steps:
+      - attach_workspace:
+          at: dist
+      - run:
+          name: spider install from dist
+          command: pip install dist/gaming_spiders*.tar.gz
+      - run:
+          name: run spider
+          command: mindgames.py
+  run_spider_miniclip:
+    executor: dev-env
+    steps:
+      - attach_workspace:
+          at: dist
+      - run:
+          name: spider install from dist
+          command: pip install dist/gaming_spiders*.tar.gz
+      - run:
+          name: run spider
+          command: miniclip.py
+  run_spider_msnonlinegames:
+    executor: dev-env
+    steps:
+      - attach_workspace:
+          at: dist
+      - run:
+          name: spider install from dist
+          command: pip install dist/gaming_spiders*.tar.gz
+      - run:
+          name: run spider
+          command: msnonlinegames.py
+  run_spider_solitaireonline:
+    executor: dev-env
+    steps:
+      - attach_workspace:
+          at: dist
+      - run:
+          name: spider install from dist
+          command: pip install dist/gaming_spiders*.tar.gz
+      - run:
+          name: run spider
+          command: solitaireonline.py
   save_artifacts:
     executor: dev-env
     steps:
@@ -107,11 +184,39 @@ workflows:
       - run_spider_gamehouseonlinegames:
           requires:
             - build_test_and_package
+      - run_spider_gamesonly:
+          requires:
+            - build_test_and_package
       - run_spider_hiddenobjectgames:
+          requires:
+            - build_test_and_package
+      - run_spider_mahjonggames:
+          requires:
+            - build_test_and_package
+      - run_spider_match3games:
+          requires:
+            - build_test_and_package
+      - run_spider_mindgames:
+          requires:
+            - build_test_and_package
+      - run_spider_miniclip:
+          requires:
+            - build_test_and_package
+      - run_spider_msnonlinegames:
+          requires:
+            - build_test_and_package
+      - run_spider_solitaireonline:
           requires:
             - build_test_and_package
       - save_artifacts:
           requires:
             - run_spider_bigfishonlinegames
             - run_spider_gamehouseonlinegames
+            - run_spider_gamesonly
             - run_spider_hiddenobjectgames
+            - run_spider_mahjonggames
+            - run_spider_match3games
+            - run_spider_mindgames
+            - run_spider_miniclip
+            - run_spider_msnonlinegames
+            - run_spider_solitaireonline
