@@ -6,7 +6,7 @@ import sys
 
 from cloudfeaster import spider
 
-from zygomatic import ZygomaticSpider
+from gaming_spiders.zygomatic import ZygomaticSpider
 
 
 class MahjongGamesSpider(ZygomaticSpider):
