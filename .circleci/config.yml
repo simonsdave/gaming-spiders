@@ -54,6 +54,17 @@ jobs:
           paths:
             - gaming_spiders-*.whl
             - gaming_spiders-*.tar.gz
+  run_spider_bigfishonlinegames:
+    executor: dev-env
+    steps:
+      - attach_workspace:
+          at: dist
+      - run:
+          name: spider install from dist
+          command: pip install gaming_spiders*.tar.gz
+      - run:
+          name: run spider
+          command: bigfishonlinegames.py
   save_artifacts:
     executor: dev-env
     steps:
@@ -68,6 +79,9 @@ workflows:
     jobs:
       - build_test_and_package:
           context: gaming-spiders
-      - save_artifacts:
+      - run_spider_bigfishonlinegames:
           requires:
             - build_test_and_package
+      - save_artifacts:
+          requires:
+            - run_spider_bigfishonlinegames
