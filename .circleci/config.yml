@@ -7,7 +7,7 @@ executors:
       - image: simonsdave/cloudfeaster-xenial-dev-env:v0.9.20
 
 jobs:
-  build_test_and_save_artifacts:
+  build_test_and_package:
     working_directory: ~/repo
     executor: dev-env
     steps:
@@ -49,15 +49,24 @@ jobs:
       - run:
           name: Build python packages
           command: build-python-package.sh
-      - run:
-          name: Run All Spiders
-          command: run-all-spiders.sh
+      - persist_to_workspace:
+          root: /tmp/gaming_spiders
+          paths:
+            - dist/gaming_spiders-*.whl
+            - dist/gaming_spiders-*.tar.gz
+  save_artifacts:
+    executor: dev-env
+    steps:
+      - attach_workspace:
+          at: /tmp/gaming_spiders
       - store_artifacts:
-          path: ./dist
+          path: /tmp/gaming_spiders/dist
           destination: dist
 
 workflows:
   build_test_and_save_artifacts:
     jobs:
-      - build_test_and_save_artifacts:
+      - build_test_and_package:
           context: gaming-spiders
+      - save_artifacts:
+          requires: build_test_and_package
