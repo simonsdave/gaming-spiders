@@ -50,17 +50,17 @@ jobs:
           name: Build python packages
           command: build-python-package.sh
       - persist_to_workspace:
-          root: /tmp/gaming_spiders
+          root: dist
           paths:
-            - dist/gaming_spiders-*.whl
-            - dist/gaming_spiders-*.tar.gz
+            - gaming_spiders-*.whl
+            - gaming_spiders-*.tar.gz
   save_artifacts:
     executor: dev-env
     steps:
       - attach_workspace:
-          at: /tmp/gaming_spiders
+          at: dist
       - store_artifacts:
-          path: /tmp/gaming_spiders/dist
+          path: dist
           destination: dist
 
 workflows:
