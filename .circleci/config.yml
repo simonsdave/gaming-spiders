@@ -69,4 +69,5 @@ workflows:
       - build_test_and_package:
           context: gaming-spiders
       - save_artifacts:
-          requires: build_test_and_package
+          requires:
+            - build_test_and_package
