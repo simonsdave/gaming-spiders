@@ -40,6 +40,16 @@ setup(
         'gaming_spiders',
     ],
     scripts=[
+        'gaming_spiders/bigfishonlinegames.py',
+        'gaming_spiders/gamehouseonlinegames.py',
+        'gaming_spiders/hiddenobjectgames.py',
+        'gaming_spiders/match3games.py',
+        'gaming_spiders/miniclip.py',
+        'gaming_spiders/solitaireonline.py',
+        'gaming_spiders/gamesonly.py',
+        'gaming_spiders/mahjonggames.py',
+        'gaming_spiders/mindgames.py',
+        'gaming_spiders/msnonlinegames.py',
     ],
     install_requires=[
         'cloudfeaster==0.9.20',
