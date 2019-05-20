@@ -61,7 +61,7 @@ jobs:
           at: dist
       - run:
           name: spider install from dist
-          command: pip install gaming_spiders*.tar.gz
+          command: pip install dist/gaming_spiders*.tar.gz
       - run:
           name: run spider
           command: bigfishonlinegames.py
