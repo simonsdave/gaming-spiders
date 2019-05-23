@@ -17,47 +17,47 @@ First follow [these](dev_env/README.md) instructions to get your development env
 Now let's run one of the spiders.
 
 ```bash
-run-spider.sh miniclip | jq .
+(env) ~> run-spider.sh miniclip | jq .
 {
   "1": {
     "link": "https://www.miniclip.com/games/8-ball-pool-multiplayer/en/#t-w-t-H",
     "title": "8 Ball Pool"
   },
   "2": {
-    "link": "https://www.miniclip.com/games/krunkerio/en/#t-w-t-H",
-    "title": "Krunker.io"
-  },
-  "3": {
-    "link": "https://www.miniclip.com/games/police-pursuit-2/en/#t-w-t-H",
-    "title": "Police Pursuit 2"
-  },
-  "4": {
-    "link": "https://www.miniclip.com/games/tanki-online/en/#t-w-t-H",
-    "title": "Tanki Online"
-  },
-  "5": {
-    "link": "https://www.miniclip.com/games/commando-2/en/#t-w-t-H",
-    "title": "Commando 2"
-  },
-  "6": {
-    "link": "https://www.miniclip.com/games/agar-io/en/#t-w-t-H",
-    "title": "Agar.io"
-  },
-  "7": {
-    "link": "https://www.miniclip.com/games/happy-wheels/en/#t-w-t-H",
-    "title": "Happy Wheels"
-  },
-  "8": {
     "link": "https://www.miniclip.com/games/soccer-stars-mobile/en/#t-w-t-H",
     "title": "Soccer Stars Mobile"
   },
-  "9": {
-    "link": "https://www.miniclip.com/games/bubble-trouble/en/#t-w-t-H",
-    "title": "Bubble Trouble"
+  "3": {
+    "link": "https://www.miniclip.com/games/krunkerio/en/#t-w-t-H",
+    "title": "Krunker.io"
   },
-  "10": {
+  "4": {
     "link": "https://www.miniclip.com/games/flip-master/en/#t-w-t-H",
     "title": "Flip Master"
+  },
+  "5": {
+    "link": "https://www.miniclip.com/games/minecraft/en/#t-w-t-H",
+    "title": "Minecraft"
+  },
+  "6": {
+    "link": "https://www.miniclip.com/games/tanki-online/en/#t-w-t-H",
+    "title": "Tanki Online"
+  },
+  "7": {
+    "link": "https://www.miniclip.com/games/basketball-stars/en/#t-w-t-H",
+    "title": "Basketball Stars"
+  },
+  "8": {
+    "link": "https://www.miniclip.com/games/agar-io/en/#t-w-t-H",
+    "title": "Agar.io"
+  },
+  "9": {
+    "link": "https://www.miniclip.com/games/flip-diving/en/#t-w-t-H",
+    "title": "Flip Diving"
+  },
+  "10": {
+    "link": "https://www.miniclip.com/games/bubble-trouble/en/#t-w-t-H",
+    "title": "Bubble Trouble"
   },
   "_metadata": {
     "status": {
@@ -66,25 +66,23 @@ run-spider.sh miniclip | jq .
     },
     "spiderArgs": [],
     "spider": {
-      "version": "sha1:de33f4ed6d1837d191f3ae605f2e127688c642b8",
+      "version": "sha256:608b163428a0342af7c66add6c6860721b416a5fd281d72cbabd8f4e12b362a2",
       "name": "__main__.MiniclipSpider"
     },
     "crawlTime": {
-      "started": "2019-04-13T13:23:29.674161+00:00",
-      "durationInMs": 10396
+      "started": "2019-05-23T10:21:55.081224+00:00",
+      "durationInMs": 19651
     }
-  },
-  "_debug": {
-    "base64ChromeDriverLog": "..."
   }
 }
+(env) ~>
 ```
 
 ## What Next
 
+* see [this](https://github.com/simonsdave/cloudfeaster/blob/master/docs/story.md) for some background on the Cloudfeaster project
 * see [these](docs/contributing.md) instructions
 describe how to setup your development environment and
 start contributing to these spiders
 * [this](https://github.com/simonsdave/cloudfeaster/blob/master/docs/spider_authors.md) describes
 how to author spiders using Cloudfeaster
-* see [this](https://github.com/simonsdave/cloudfeaster/blob/master/docs/story.md) for some background on the Cloudfeaster project
