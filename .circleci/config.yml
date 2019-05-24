@@ -176,7 +176,53 @@ jobs:
 
 workflows:
   version: 2
-  build_test_and_save_artifacts:
+  commit:
+    jobs:
+      - build_test_and_package:
+          context: gaming-spiders
+      - run_spider_bigfishonlinegames:
+          requires:
+            - build_test_and_package
+      - run_spider_gamehouseonlinegames:
+          requires:
+            - build_test_and_package
+      - run_spider_gamesonly:
+          requires:
+            - build_test_and_package
+      - run_spider_hiddenobjectgames:
+          requires:
+            - build_test_and_package
+      - run_spider_mahjonggames:
+          requires:
+            - build_test_and_package
+      - run_spider_match3games:
+          requires:
+            - build_test_and_package
+      - run_spider_mindgames:
+          requires:
+            - build_test_and_package
+      - run_spider_miniclip:
+          requires:
+            - build_test_and_package
+      - run_spider_msnonlinegames:
+          requires:
+            - build_test_and_package
+      - run_spider_solitaireonline:
+          requires:
+            - build_test_and_package
+      - save_artifacts:
+          requires:
+            - run_spider_bigfishonlinegames
+            - run_spider_gamehouseonlinegames
+            - run_spider_gamesonly
+            - run_spider_hiddenobjectgames
+            - run_spider_mahjonggames
+            - run_spider_match3games
+            - run_spider_mindgames
+            - run_spider_miniclip
+            - run_spider_msnonlinegames
+            - run_spider_solitaireonline
+  nightly:
     triggers:
       - schedule:
           cron: "0 0 * * *"
