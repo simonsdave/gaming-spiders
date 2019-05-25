@@ -55,8 +55,11 @@ jobs:
           paths:
             - gaming_spiders-*.whl
             - gaming_spiders-*.tar.gz
-  run_spider_bigfishonlinegames:
+  run_spider:
     executor: dev-env
+    parameters:
+      spider:
+        type: string
     steps:
       - attach_workspace:
           at: dist
@@ -65,106 +68,7 @@ jobs:
           command: pip install dist/gaming_spiders*.tar.gz
       - run:
           name: run spider
-          command: bigfishonlinegames.py
-  run_spider_gamehouseonlinegames:
-    executor: dev-env
-    steps:
-      - attach_workspace:
-          at: dist
-      - run:
-          name: spider install from dist
-          command: pip install dist/gaming_spiders*.tar.gz
-      - run:
-          name: run spider
-          command: gamehouseonlinegames.py
-  run_spider_gamesonly:
-    executor: dev-env
-    steps:
-      - attach_workspace:
-          at: dist
-      - run:
-          name: spider install from dist
-          command: pip install dist/gaming_spiders*.tar.gz
-      - run:
-          name: run spider
-          command: gamesonly.py
-  run_spider_hiddenobjectgames:
-    executor: dev-env
-    steps:
-      - attach_workspace:
-          at: dist
-      - run:
-          name: spider install from dist
-          command: pip install dist/gaming_spiders*.tar.gz
-      - run:
-          name: run spider
-          command: hiddenobjectgames.py
-  run_spider_mahjonggames:
-    executor: dev-env
-    steps:
-      - attach_workspace:
-          at: dist
-      - run:
-          name: spider install from dist
-          command: pip install dist/gaming_spiders*.tar.gz
-      - run:
-          name: run spider
-          command: mahjonggames.py
-  run_spider_match3games:
-    executor: dev-env
-    steps:
-      - attach_workspace:
-          at: dist
-      - run:
-          name: spider install from dist
-          command: pip install dist/gaming_spiders*.tar.gz
-      - run:
-          name: run spider
-          command: match3games.py
-  run_spider_mindgames:
-    executor: dev-env
-    steps:
-      - attach_workspace:
-          at: dist
-      - run:
-          name: spider install from dist
-          command: pip install dist/gaming_spiders*.tar.gz
-      - run:
-          name: run spider
-          command: mindgames.py
-  run_spider_miniclip:
-    executor: dev-env
-    steps:
-      - attach_workspace:
-          at: dist
-      - run:
-          name: spider install from dist
-          command: pip install dist/gaming_spiders*.tar.gz
-      - run:
-          name: run spider
-          command: miniclip.py
-  run_spider_msnonlinegames:
-    executor: dev-env
-    steps:
-      - attach_workspace:
-          at: dist
-      - run:
-          name: spider install from dist
-          command: pip install dist/gaming_spiders*.tar.gz
-      - run:
-          name: run spider
-          command: msnonlinegames.py
-  run_spider_solitaireonline:
-    executor: dev-env
-    steps:
-      - attach_workspace:
-          at: dist
-      - run:
-          name: spider install from dist
-          command: pip install dist/gaming_spiders*.tar.gz
-      - run:
-          name: run spider
-          command: solitaireonline.py
+          command: << parameters.spider >>.py
   save_artifacts:
     executor: dev-env
     steps:
@@ -180,34 +84,54 @@ workflows:
     jobs:
       - build_test_and_package:
           context: gaming-spiders
-      - run_spider_bigfishonlinegames:
+      - run_spider:
+          spider: bigfishonlinegames
+          name: run_spider_bigfishonlinegames
           requires:
             - build_test_and_package
-      - run_spider_gamehouseonlinegames:
+      - run_spider:
+          spider: gamehouseonlinegames
+          name: run_spider_gamehouseonlinegames
           requires:
             - build_test_and_package
-      - run_spider_gamesonly:
+      - run_spider:
+          spider: gamesonly
+          name: run_spider_gamesonly
           requires:
             - build_test_and_package
-      - run_spider_hiddenobjectgames:
+      - run_spider:
+          spider: hiddenobjectgames
+          name: run_spider_hiddenobjectgames
           requires:
             - build_test_and_package
-      - run_spider_mahjonggames:
+      - run_spider:
+          spider: mahjonggames
+          name: run_spider_mahjonggames
           requires:
             - build_test_and_package
-      - run_spider_match3games:
+      - run_spider:
+          spider: match3games
+          name: run_spider_match3games
           requires:
             - build_test_and_package
-      - run_spider_mindgames:
+      - run_spider:
+          spider: mindgames
+          name: run_spider_mindgames
           requires:
             - build_test_and_package
-      - run_spider_miniclip:
+      - run_spider:
+          spider: miniclip
+          name: run_spider_miniclip
           requires:
             - build_test_and_package
-      - run_spider_msnonlinegames:
+      - run_spider:
+          spider: msnonlinegames
+          name: run_spider_msnonlinegames
           requires:
             - build_test_and_package
-      - run_spider_solitaireonline:
+      - run_spider:
+          spider: solitaireonline
+          name: run_spider_solitaireonline
           requires:
             - build_test_and_package
       - save_artifacts:
@@ -233,34 +157,54 @@ workflows:
     jobs:
       - build_test_and_package:
           context: gaming-spiders
-      - run_spider_bigfishonlinegames:
+      - run_spider:
+          spider: bigfishonlinegames
+          name: run_spider_bigfishonlinegames
           requires:
             - build_test_and_package
-      - run_spider_gamehouseonlinegames:
+      - run_spider:
+          spider: gamehouseonlinegames
+          name: run_spider_gamehouseonlinegames
           requires:
             - build_test_and_package
-      - run_spider_gamesonly:
+      - run_spider:
+          spider: gamesonly
+          name: run_spider_gamesonly
           requires:
             - build_test_and_package
-      - run_spider_hiddenobjectgames:
+      - run_spider:
+          spider: hiddenobjectgames
+          name: run_spider_hiddenobjectgames
           requires:
             - build_test_and_package
-      - run_spider_mahjonggames:
+      - run_spider:
+          spider: mahjonggames
+          name: run_spider_mahjonggames
           requires:
             - build_test_and_package
-      - run_spider_match3games:
+      - run_spider:
+          spider: match3games
+          name: run_spider_match3games
           requires:
             - build_test_and_package
-      - run_spider_mindgames:
+      - run_spider:
+          spider: mindgames
+          name: run_spider_mindgames
           requires:
             - build_test_and_package
-      - run_spider_miniclip:
+      - run_spider:
+          spider: miniclip
+          name: run_spider_miniclip
           requires:
             - build_test_and_package
-      - run_spider_msnonlinegames:
+      - run_spider:
+          spider: msnonlinegames
+          name: run_spider_msnonlinegames
           requires:
             - build_test_and_package
-      - run_spider_solitaireonline:
+      - run_spider:
+          spider: solitaireonline
+          name: run_spider_solitaireonline
           requires:
             - build_test_and_package
       - save_artifacts:
