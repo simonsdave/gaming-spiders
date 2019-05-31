@@ -78,12 +78,15 @@ jobs:
           path: dist
           destination: dist
 
+# so we don't repeat context
+build_test_and_package: &build_test_and_package
+  context: gaming-spiders
+
 workflows:
   version: 2
   commit:
     jobs:
-      - build_test_and_package:
-          context: gaming-spiders
+      - <<: *build_test_and_package
       - run_spider:
           spider: bigfishonlinegames
           name: run_spider_bigfishonlinegames
@@ -155,8 +158,7 @@ workflows:
               only:
                 - master
     jobs:
-      - build_test_and_package:
-          context: gaming-spiders
+      - <<: *build_test_and_package
       - run_spider:
           spider: bigfishonlinegames
           name: run_spider_bigfishonlinegames
