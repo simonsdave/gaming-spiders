@@ -1,0 +1,9 @@
+[run]
+branch = True
+include =
+    ./gaming_spiders/*
+omit =
+    *tests*
+
+[html]
+directory = coverage_report
