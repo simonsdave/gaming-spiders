@@ -6,3 +6,4 @@ env
 gaming_spiders.egg-info
 .vagrant
 .coverage
+coverage_report/
