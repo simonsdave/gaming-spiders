@@ -7,6 +7,6 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-python-increment-version.sh -m
+python-version.sh
 
 exit 0
