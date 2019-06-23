@@ -14,7 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- cloudfeaster 0.9.10 -> 0.9.24
+- cloudfeaster 0.9.10 -> 0.9.25
 - flake8 3.7.5 -> 3.7.7
 
 ### Removed
