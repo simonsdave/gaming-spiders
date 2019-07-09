@@ -3,7 +3,7 @@
 ![Maintained](https://img.shields.io/maintenance/yes/2019.svg)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 ![Python 2.7](https://img.shields.io/badge/python-2.7-FFC100.svg?style=flat)
-[![Requirements Status](https://requires.io/github/simonsdave/gaming-spiders/requirements.svg?branch=master)](https://requires.io/github/simonsdave/gaming-spiders/requirements/?branch=master)
+[![Requirements Status](https://requires.io/github/simonsdave/gaming-spiders/requirements.svg?branch=release-1.4.0)](https://requires.io/github/simonsdave/gaming-spiders/requirements/?branch=release-1.4.0)
 [![CircleCI](https://circleci.com/gh/simonsdave/gaming-spiders.svg?style=shield)](https://circleci.com/gh/simonsdave/gaming-spiders)
 [![Vulnerabilities](https://snyk.io/test/github/simonsdave/gaming-spiders/badge.svg)](https://snyk.io/test/github/simonsdave/gaming-spiders)
 
@@ -81,7 +81,7 @@ Now let's run one of the spiders.
 ## What Next
 
 * see [this](https://github.com/simonsdave/cloudfeaster/blob/master/docs/story.md) for some background on the Cloudfeaster project
-* see [these](docs/contributing.md) instructions
+* see [these](https://github.com/simonsdave/gaming-spiders/tree/release-1.4.0/docs/contributing.md) instructions
 describe how to setup your development environment and
 start contributing to these spiders
 * [this](https://github.com/simonsdave/cloudfeaster/blob/master/docs/spider_authors.md) describes
