@@ -4,7 +4,7 @@ version: 2.1
 executors:
   dev-env:
     docker:
-      - image: simonsdave/cloudfeaster-xenial-dev-env:v0.9.30
+      - image: simonsdave/cloudfeaster-xenial-dev-env:v0.9.31
 
 jobs:
   build_test_and_package:
