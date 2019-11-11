@@ -16,7 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
-* Nothing
+* remove [Snyk](https://snyk.io/) from CI pipeline & docs
 
 ## [1.5.0] - [2019-07-18]
 
