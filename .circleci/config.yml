@@ -146,6 +146,7 @@ workflows:
   nightly:
     triggers:
       - schedule:
+          # https://crontab.guru/ is super useful in decoding the value of the cron key
           cron: "0 0 * * *"
           filters:
             branches:
