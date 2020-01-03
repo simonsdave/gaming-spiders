@@ -1,6 +1,6 @@
 # gaming-spiders
 
-![Maintained](https://img.shields.io/maintenance/yes/2019.svg)
+![Maintained](https://img.shields.io/maintenance/yes/2020.svg)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 ![Python 2.7](https://img.shields.io/badge/python-2.7-FFC100.svg?style=flat)
 [![Requirements Status](https://requires.io/github/simonsdave/gaming-spiders/requirements.svg?branch=master)](https://requires.io/github/simonsdave/gaming-spiders/requirements/?branch=master)
