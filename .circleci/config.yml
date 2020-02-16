@@ -78,7 +78,6 @@ jobs:
             CRAWL_OUTPUT=/tmp/<< parameters.spider >>/crawl-output.json
             << parameters.spider >>.py >& "${CRAWL_OUTPUT}"
             cat "${CRAWL_OUTPUT}"
-            ls -la /tmp
             cp $(jq -r ._debug.screenshot "${CRAWL_OUTPUT}") /tmp/<< parameters.spider >>/screenshot.png
             cp $(jq -r ._debug.crawlLog "${CRAWL_OUTPUT}") /tmp/<< parameters.spider >>/crawl_log.txt
             cp $(jq -r ._debug.chromeDriverLog "${CRAWL_OUTPUT}") /tmp/<< parameters.spider >>/chrome_driver_log.txt
