@@ -4,7 +4,7 @@ version: 2.1
 executors:
   dev-env:
     docker:
-      - image: simonsdave/cloudfeaster-bionic-dev-env:v0.9.34
+      - image: simonsdave/cloudfeaster-bionic-dev-env:v0.9.35
 
 jobs:
   build_test_and_package:
@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - run: check-consistent-clf-version.sh --verbose
-      # - run: check-circleci-config.sh
+      - run: check-circleci-config.sh
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
@@ -79,8 +79,8 @@ jobs:
             CLF_DEBUG=INFO << parameters.spider >>.py >& "${CRAWL_OUTPUT}"
             cat "${CRAWL_OUTPUT}"
             cp $(jq -r ._debug.screenshot "${CRAWL_OUTPUT}") /tmp/<< parameters.spider >>/screenshot.png
-            cp $(jq -r ._debug.crawlLog "${CRAWL_OUTPUT}") /tmp/<< parameters.spider >>/crawl_log.txt
-            cp $(jq -r ._debug.chromeDriverLog "${CRAWL_OUTPUT}") /tmp/<< parameters.spider >>/chrome_driver_log.txt
+            cp $(jq -r ._debug.crawlLog "${CRAWL_OUTPUT}") /tmp/<< parameters.spider >>/crawl-log.txt
+            cp $(jq -r ._debug.chromeDriverLog "${CRAWL_OUTPUT}") /tmp/<< parameters.spider >>/chrome-driver-log.txt
       - store_artifacts:
           path: /tmp/<< parameters.spider >>/crawl-output.json
           destination: crawl-output.json
@@ -88,11 +88,11 @@ jobs:
           path: /tmp/<< parameters.spider >>/screenshot.png
           destination: screenshot.png
       - store_artifacts:
-          path: /tmp/<< parameters.spider >>/crawl_log.txt
-          destination: crawl_log.txt
+          path: /tmp/<< parameters.spider >>/crawl-log.txt
+          destination: crawl-log.txt
       - store_artifacts:
-          path: /tmp/<< parameters.spider >>/chrome_driver_log.txt
-          destination: chrome_driver_log.txt
+          path: /tmp/<< parameters.spider >>/chrome-driver-log.txt
+          destination: chrome-driver-log.txt
   save_artifacts:
     executor: dev-env
     steps:
