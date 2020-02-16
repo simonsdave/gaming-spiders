@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.7
 # -*- coding: utf-8 -*-
 
 import json
@@ -41,5 +41,5 @@ if __name__ == "__main__":
     crawl_args = spider.CLICrawlArgs(BigFishOnlineGamesSpider)
     crawler = spider.SpiderCrawler(BigFishOnlineGamesSpider)
     crawl_result = crawler.crawl(*crawl_args)
-    print json.dumps(crawl_result)
+    print(json.dumps(crawl_result))
     sys.exit(1 if crawl_result.status_code else 0)

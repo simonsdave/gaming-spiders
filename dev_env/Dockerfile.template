@@ -1,14 +1,11 @@
-FROM simonsdave/cloudfeaster-xenial-dev-env:%CLF_VERSION%
+FROM simonsdave/cloudfeaster-bionic-dev-env:%CLF_VERSION%
 
 LABEL maintainer="Dave Simons"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN mkdir /tmp/package
-ADD package.tar.gz /tmp/package/.
-
-RUN cd /tmp/package && pip install --requirement "requirements.txt"
-
-RUN rm -rf "/tmp/package"
+COPY package.tar.gz /tmp/.
+RUN python3.7 -m pip install /tmp/package.tar.gz
+RUN rm -f /tmp/package.tar.gz
 
 ENV DEBIAN_FRONTEND newt
