@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* cloudfeaster 0.9.30 -> 0.9.35 (which includes Python 2.7 -> 3.7)
+* cloudfeaster 0.9.30 -> 0.9.36 (which includes Python 2.7 -> 3.7)
 
 ### Removed
 
