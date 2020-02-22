@@ -4,7 +4,7 @@ version: 2.1
 executors:
   dev-env:
     docker:
-      - image: simonsdave/cloudfeaster-bionic-dev-env:v0.9.37
+      - image: simonsdave/cloudfeaster-bionic-dev-env:v0.9.38
 
 jobs:
   build_test_and_package:
@@ -13,6 +13,7 @@ jobs:
     steps:
       - checkout
       - run: check-consistent-clf-version.sh --verbose
+      - run: check-circleci-config.sh
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
