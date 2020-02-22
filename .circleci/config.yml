@@ -4,7 +4,7 @@ version: 2.1
 executors:
   dev-env:
     docker:
-      - image: simonsdave/cloudfeaster-bionic-dev-env:v0.9.36
+      - image: simonsdave/cloudfeaster-bionic-dev-env:v0.9.37
 
 jobs:
   build_test_and_package:
