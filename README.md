@@ -17,62 +17,63 @@ First follow [these](dev_env/README.md) instructions to get your development env
 Now let's run one of the spiders.
 
 ```bash
-(env) ~> run-spider.sh miniclip.py | jq .
+(env) ~> run-spider.sh bigfishonlinegames.py | jq .
 {
   "1": {
-    "link": "https://www.miniclip.com/games/8-ball-pool-multiplayer/en/#t-w-t-H",
-    "title": "8 Ball Pool"
+    "title": "Hidden Express",
+    "link": "https://www.bigfishgames.com/online-games/25540/en_hidden-express/index.html"
   },
   "2": {
-    "link": "https://www.miniclip.com/games/soccer-stars-mobile/en/#t-w-t-H",
-    "title": "Soccer Stars Mobile"
+    "title": "Cubis Gold 2",
+    "link": "https://www.bigfishgames.com/online-games/1909/en_cubis-gold-2/index.html"
   },
   "3": {
-    "link": "https://www.miniclip.com/games/krunkerio/en/#t-w-t-H",
-    "title": "Krunker.io"
+    "title": "Fitz!",
+    "link": "https://www.bigfishgames.com/online-games/2222/en_fitz/index.html"
   },
   "4": {
-    "link": "https://www.miniclip.com/games/flip-master/en/#t-w-t-H",
-    "title": "Flip Master"
+    "title": "Bubblez!",
+    "link": "https://www.bigfishgames.com/online-games/2196/en_bubblez/index.html"
   },
   "5": {
-    "link": "https://www.miniclip.com/games/minecraft/en/#t-w-t-H",
-    "title": "Minecraft"
+    "title": "Algerian Patience Solitaire",
+    "link": "https://www.bigfishgames.com/online-games/3887/en_algerian-patience-solitaire/index.html"
   },
   "6": {
-    "link": "https://www.miniclip.com/games/tanki-online/en/#t-w-t-H",
-    "title": "Tanki Online"
+    "title": "Dreamfields",
+    "link": "https://www.bigfishgames.com/online-games/25550/en_dreamfields-free-to-play/index.html"
   },
   "7": {
-    "link": "https://www.miniclip.com/games/basketball-stars/en/#t-w-t-H",
-    "title": "Basketball Stars"
+    "title": "The Rise of Atlantis",
+    "link": "https://www.bigfishgames.com/online-games/1889/en_riseofatlantis/index.html"
   },
   "8": {
-    "link": "https://www.miniclip.com/games/agar-io/en/#t-w-t-H",
-    "title": "Agar.io"
+    "title": "Dragon Mahjong",
+    "link": "https://www.bigfishgames.com/online-games/21826/en_dragon-mahjong/index.html"
   },
   "9": {
-    "link": "https://www.miniclip.com/games/flip-diving/en/#t-w-t-H",
-    "title": "Flip Diving"
-  },
-  "10": {
-    "link": "https://www.miniclip.com/games/bubble-trouble/en/#t-w-t-H",
-    "title": "Bubble Trouble"
+    "title": "Shanghai",
+    "link": "https://www.bigfishgames.com/online-games/8031/en_shanghai/index.html"
   },
   "_metadata": {
     "status": {
-      "message": "Ok",
-      "code": 0
+      "code": 0,
+      "message": "Ok"
     },
-    "spiderArgs": [],
     "spider": {
-      "version": "sha256:608b163428a0342af7c66add6c6860721b416a5fd281d72cbabd8f4e12b362a2",
-      "name": "__main__.MiniclipSpider"
+      "name": "__main__.BigFishOnlineGamesSpider",
+      "version": "sha256:44336fe0596a789d429c1840f69823c11803887fe804763b66f1ab7e12aaf95e"
     },
+    "crawlArgs": [],
     "crawlTime": {
-      "started": "2019-05-23T10:21:55.081224+00:00",
-      "durationInMs": 19651
+      "started": "2020-03-08T20:41:17.424941+00:00",
+      "durationInMs": 4219
     }
+  },
+  "_debug": {
+    "screenshot": "/var/folders/7x/rr443kj575s8zz54jrbrp4jc0000gn/T/tmp.JYTivkpU/screenshot.png",
+    "crawlLog": "/var/folders/7x/rr443kj575s8zz54jrbrp4jc0000gn/T/tmp.JYTivkpU/crawl-log.txt",
+    "chromeDriverLog": "/var/folders/7x/rr443kj575s8zz54jrbrp4jc0000gn/T/tmp.JYTivkpU/chromedriver-log.txt"
   }
 }
 (env) ~>
