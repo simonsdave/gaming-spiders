@@ -17,7 +17,7 @@ First follow [these](dev_env/README.md) instructions to get your development env
 Now let's run one of the spiders.
 
 ```bash
-(env) ~> run-spider.sh miniclip | jq .
+(env) ~> run-spider.sh miniclip.py | jq .
 {
   "1": {
     "link": "https://www.miniclip.com/games/8-ball-pool-multiplayer/en/#t-w-t-H",
