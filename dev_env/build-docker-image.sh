@@ -12,13 +12,10 @@ fi
 DOCKER_IMAGE=${1:-}
 
 TEMP_DOCKERFILE=$(mktemp 2> /dev/null || mktemp -t DAS)
-cp "${SCRIPT_DIR_NAME}/Dockerfile.template" "${TEMP_DOCKERFILE}"
-
-CLF_VERSION=$(grep cloudfeaster== "${SCRIPT_DIR_NAME}/../setup.py" | sed -e "s|^[[:space:]]*['\"]cloudfeaster==||g" | sed -e "s|['\"].*$||g")
 sed \
-    -i '' \
-    -e "s|%CLF_VERSION%|v${CLF_VERSION}|g" \
-    "${TEMP_DOCKERFILE}"
+    -e "s|%CIRCLE_CI_EXECUTOR%|$(get-circle-ci-executor.sh)|g" \
+    < "${SCRIPT_DIR_NAME}/Dockerfile.template" \
+    > "${TEMP_DOCKERFILE}"
 
 CONTEXT_DIR=$(mktemp -d 2> /dev/null || mktemp -d -t DAS)
 

@@ -1,4 +1,4 @@
-FROM simonsdave/cloudfeaster-bionic-dev-env:%CLF_VERSION%
+FROM %CIRCLE_CI_EXECUTOR%
 
 LABEL maintainer="Dave Simons"
 
