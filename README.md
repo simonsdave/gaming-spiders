@@ -5,7 +5,9 @@
 ![Python 2.7](https://img.shields.io/badge/python-2.7-FFC100.svg?style=flat)
 [![Requirements Status](https://requires.io/github/simonsdave/gaming-spiders/requirements.svg?branch=master)](https://requires.io/github/simonsdave/gaming-spiders/requirements/?branch=master)
 [![CodeFactor](https://www.codefactor.io/repository/github/simonsdave/gaming-spiders/badge/master)](https://www.codefactor.io/repository/github/simonsdave/gaming-spiders/overview/master)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/simonsdave/gaming-spiders.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/simonsdave/gaming-spiders/context:python)
 [![CircleCI](https://circleci.com/gh/simonsdave/gaming-spiders.svg?style=shield)](https://circleci.com/gh/simonsdave/gaming-spiders)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/simonsdave/gaming-spiders.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/simonsdave/gaming-spiders/alerts/)
 
 A collection of [Cloudfeaster](https://github.com/simonsdave/cloudfeaster)
 spiders for various gaming services.
