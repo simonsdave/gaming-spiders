@@ -100,6 +100,17 @@ jobs:
       - store_artifacts:
           path: /tmp/<< parameters.spider >>/chrome-driver-log.txt
           destination: chrome-driver-log.txt
+      - run:
+          name: fail workflow is crawl failed
+          command: |
+            # we force the "run spider" step to succeed regardless of the
+            # success/failure of the spider's crawl. however, we actually
+            # want the workflow to fail if the spider's crawl fails but we
+            # also want to store artifacts before failing because those
+            # artifacts will be used to debug a failed crawl. this is all
+            # to explain the need for this somewhat odd final step in the
+            # workflow.
+            if [[ "$(jq ._metadata.status.code /tmp/<< parameters.spider >>/crawl-output.json)" == "0" ]]; then true; else false; fi
   save_artifacts:
     executor: dev-env
     steps:
