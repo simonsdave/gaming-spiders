@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - run: check-consistent-clf-version.sh --verbose
-      - run: check-circleci-config.sh
+      # - run: check-circleci-config.sh
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
@@ -79,8 +79,12 @@ jobs:
           command: |
             mkdir /tmp/<< parameters.spider >>
             CRAWL_OUTPUT=/tmp/<< parameters.spider >>/crawl-output.json
-            CLF_DEBUG=INFO << parameters.spider >>.py >& "${CRAWL_OUTPUT}"
-            cat "${CRAWL_OUTPUT}"
+            # need the "|| true" because bash started by CircleCI with -e
+            # and shell will exit when spider fails which is exactly what
+            # we don't want because then we don't get access to artifacts
+            # to diagnose the spider's failure
+            CLF_DEBUG=INFO << parameters.spider >>.py >& "${CRAWL_OUTPUT}" || true
+            jq -r "${CRAWL_OUTPUT}"
             cp $(jq -r ._debug.screenshot "${CRAWL_OUTPUT}") /tmp/<< parameters.spider >>/screenshot.png
             cp $(jq -r ._debug.crawlLog "${CRAWL_OUTPUT}") /tmp/<< parameters.spider >>/crawl-log.txt
             cp $(jq -r ._debug.chromeDriverLog "${CRAWL_OUTPUT}") /tmp/<< parameters.spider >>/chrome-driver-log.txt
