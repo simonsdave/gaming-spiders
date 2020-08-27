@@ -104,7 +104,7 @@ jobs:
           path: /tmp/<< parameters.spider >>/chrome-driver-log.txt
           destination: chrome-driver-log.txt
       - run:
-          name: fail workflow is crawl failed
+          name: fail workflow if crawl failed
           command: |
             # we force the "run spider" step to succeed regardless of the
             # success/failure of the spider's crawl. however, we actually
@@ -113,7 +113,9 @@ jobs:
             # artifacts will be used to debug a failed crawl. this is all
             # to explain the need for this somewhat odd final step in the
             # workflow.
-            if [[ "$(jq ._metadata.status.code /tmp/<< parameters.spider >>/crawl-output.json)" == "0" ]]; then true; else false; fi
+            if [[ "$(jq ._metadata.status.code /tmp/<< parameters.spider >>/crawl-output.json)" != "0" ]]; then
+                false
+            fi
 
 workflows:
   version: 2
