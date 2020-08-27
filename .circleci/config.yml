@@ -7,7 +7,7 @@ executors:
       - image: simonsdave/cloudfeaster-bionic-dev-env:v0.9.41
 
 jobs:
-  build_test_and_package:
+  build_test_package_and_save_artifacts:
     working_directory: ~/repo
     executor: dev-env
     steps:
@@ -58,6 +58,9 @@ jobs:
       - run:
           name: Build python packages
           command: build-python-package.sh
+      - store_artifacts:
+          path: dist
+          destination: dist
       - persist_to_workspace:
           root: dist
           paths:
@@ -111,83 +114,63 @@ jobs:
             # to explain the need for this somewhat odd final step in the
             # workflow.
             if [[ "$(jq ._metadata.status.code /tmp/<< parameters.spider >>/crawl-output.json)" == "0" ]]; then true; else false; fi
-  save_artifacts:
-    executor: dev-env
-    steps:
-      - attach_workspace:
-          at: dist
-      - store_artifacts:
-          path: dist
-          destination: dist
 
 workflows:
   version: 2
   commit:
     jobs:
-      - build_test_and_package:
+      - build_test_package_and_save_artifacts:
           context: gaming-spiders
       - run_spider:
           spider: bigfishonlinegames
           name: run_spider_bigfishonlinegames
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: gamehouseonlinegames
           name: run_spider_gamehouseonlinegames
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: gamesonly
           name: run_spider_gamesonly
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: hiddenobjectgames
           name: run_spider_hiddenobjectgames
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: mahjonggames
           name: run_spider_mahjonggames
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: match3games
           name: run_spider_match3games
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: mindgames
           name: run_spider_mindgames
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: miniclip
           name: run_spider_miniclip
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: msnonlinegames
           name: run_spider_msnonlinegames
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: solitaireonline
           name: run_spider_solitaireonline
           requires:
-            - build_test_and_package
-      - save_artifacts:
-          requires:
-            - run_spider_bigfishonlinegames
-            - run_spider_gamehouseonlinegames
-            - run_spider_gamesonly
-            - run_spider_hiddenobjectgames
-            - run_spider_mahjonggames
-            - run_spider_match3games
-            - run_spider_mindgames
-            - run_spider_miniclip
-            - run_spider_msnonlinegames
-            - run_spider_solitaireonline
+            - build_test_package_and_save_artifacts
   nightly:
     triggers:
       - schedule:
@@ -198,67 +181,55 @@ workflows:
               only:
                 - master
     jobs:
-      - build_test_and_package:
+      - build_test_package_and_save_artifacts:
           context: gaming-spiders
       - run_spider:
           spider: bigfishonlinegames
           name: run_spider_bigfishonlinegames
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: gamehouseonlinegames
           name: run_spider_gamehouseonlinegames
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: gamesonly
           name: run_spider_gamesonly
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: hiddenobjectgames
           name: run_spider_hiddenobjectgames
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: mahjonggames
           name: run_spider_mahjonggames
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: match3games
           name: run_spider_match3games
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: mindgames
           name: run_spider_mindgames
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: miniclip
           name: run_spider_miniclip
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: msnonlinegames
           name: run_spider_msnonlinegames
           requires:
-            - build_test_and_package
+            - build_test_package_and_save_artifacts
       - run_spider:
           spider: solitaireonline
           name: run_spider_solitaireonline
           requires:
-            - build_test_and_package
-      - save_artifacts:
-          requires:
-            - run_spider_bigfishonlinegames
-            - run_spider_gamehouseonlinegames
-            - run_spider_gamesonly
-            - run_spider_hiddenobjectgames
-            - run_spider_mahjonggames
-            - run_spider_match3games
-            - run_spider_mindgames
-            - run_spider_miniclip
-            - run_spider_msnonlinegames
-            - run_spider_solitaireonline
+            - build_test_package_and_save_artifacts
