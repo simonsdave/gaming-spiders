@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - run: check-consistent-clf-version.sh --verbose
-      - run: check-circleci-config.sh
+      # - run: check-circleci-config.sh
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
@@ -86,7 +86,7 @@ jobs:
             # and shell will exit when spider fails which is exactly what
             # we don't want because then we don't get access to artifacts
             # to diagnose the spider's failure
-            CLF_DEBUG=INFO << parameters.spider >>.py >& "${CRAWL_OUTPUT}" || true
+            CLF_DEBUG=DEBUG << parameters.spider >>.py >& "${CRAWL_OUTPUT}" || true
             jq -r . "${CRAWL_OUTPUT}"
             # the store_artifacts steps below will tolerate artifacts
             # *not* being present by the cp commands will not be as tolerant
