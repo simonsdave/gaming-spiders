@@ -4,7 +4,7 @@ version: 2.1
 executors:
   dev-env:
     docker:
-      - image: simonsdave/cloudfeaster-dev-env:v0.9.44
+      - image: simonsdave/cloudfeaster-dev-env:v0.9.45
         auth:
           username: $DOCKER_EXECUTOR_DOCKERHUB_USERNAME
           password: $DOCKER_EXECUTOR_DOCKERHUB_PASSWORD
@@ -16,8 +16,7 @@ jobs:
     steps:
       - checkout
       - run: check-consistent-clf-version.sh --verbose
-      # :TODO: :TEMP: until upgrade to next cloudfeaster rev
-      # - run: check-circleci-config.sh
+      - run: check-circleci-config.sh
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
