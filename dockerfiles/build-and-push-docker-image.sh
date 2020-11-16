@@ -30,6 +30,7 @@ docker build \
     "${CONTEXT_DIR}"
 
 rm -rf "${CONTEXT_DIR}"
+rm -f "${TEMP_DOCKERFILE}"
 
 echo "${PASSWORD}" | docker login --username="${IMAGE_NAME%/*}" --password-stdin
 docker push "${IMAGE_NAME}"
