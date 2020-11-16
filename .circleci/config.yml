@@ -89,8 +89,8 @@ jobs:
       - persist_to_workspace:
           root: dist
           paths:
-            - gaming_spiders-*.whl
-            - gaming_spiders-*.tar.gz
+            - gaming_spiders-$(python-version.sh).whl
+            - gaming_spiders-$(python-version.sh).tar.gz
 
   run_spider:
     executor: dev-env
@@ -102,7 +102,7 @@ jobs:
           at: dist
       - run:
           name: spider install from dist
-          command: python3.7 -m pip install dist/gaming_spiders*.tar.gz
+          command: python3.7 -m pip install dist/gaming_spiders-$(python-version.sh).tar.gz
       - run:
           name: run spider
           command: |
