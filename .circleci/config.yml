@@ -17,6 +17,12 @@ executors:
           username: $DOCKER_EXECUTOR_DOCKERHUB_USERNAME
           password: $DOCKER_EXECUTOR_DOCKERHUB_PASSWORD
 
+commands:
+  my_setup_remote_docker:
+    steps:
+      - setup_remote_docker:
+          version: 19.03.13
+
 jobs:
   build_test_package_and_save_artifacts:
     working_directory: ~/repo
@@ -69,8 +75,7 @@ jobs:
       - run:
           name: Build python packages
           command: build-python-package.sh
-      - setup_remote_docker:
-          version: 19.03.13
+      - my_setup_remote_docker
       - run:
           name: Build docker image
           command: |
@@ -164,8 +169,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: dist
-      - setup_remote_docker:
-          version: 19.03.13
+      - my_setup_remote_docker
       - deploy:
           name: Push docker image to dockerhub
           command: |
