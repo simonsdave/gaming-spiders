@@ -21,6 +21,7 @@ COPY package.tar.gz /tmp/package.tar.gz
 RUN python3.7 -m pip install /tmp/package.tar.gz
 RUN rm -f /tmp/package.tar.gz
 
+RUN adduser headless --system --no-create-home
 USER headless
 
 ENV DEBIAN_FRONTEND newt
