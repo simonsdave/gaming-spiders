@@ -56,16 +56,23 @@ class CrawlContainer(object):
         ]
         return json.loads(subprocess.check_output(args).decode('UTF-8').strip())
 
+    def is_success(self):
+        if not self.is_finished():
+            return False
+
+        return self.output()['_metadata']['status']['code'] == 0
+
 
 if __name__ == "__main__":
-    if len(sys.argv) < 4:
-        fmt = "usage: {app} <# spiders to run> <docker-image> <spider-1> ... <spider-N>"
+    if len(sys.argv) < 5:
+        fmt = "usage: {app} <#-spiders-2-run> <output-dir> <docker-image> <spider-1> ... <spider-N>"
         print(fmt.format(app=os.path.split(sys.argv[0])[1]))
         sys.exit(1)
 
     max_number_spiders_to_run = int(sys.argv[1])
-    docker_image = sys.argv[2]
-    spiders_left_to_run = sys.argv[3:]
+    output_dir = sys.argv[2]
+    docker_image = sys.argv[3]
+    spiders_left_to_run = sys.argv[4:]
 
     running_spiders = []
     run_spiders = []
@@ -76,7 +83,9 @@ if __name__ == "__main__":
             if running_spider.is_finished():
                 running_spiders.remove(running_spider)
                 run_spiders.append(running_spider)
-                print('>>>{spider}<<< finished running'.format(spider=running_spider.spider))
+                print('>>>{spider}<<< finished running - {status}'.format(
+                    spider=running_spider.spider,
+                    status='success' if running_spider.is_success() else 'failure'))
             else:
                 print('>>>{spider}<<< still running'.format(spider=running_spider.spider))
 
