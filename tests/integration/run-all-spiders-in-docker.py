@@ -58,18 +58,17 @@ class CrawlContainer(object):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        fmt = "usage: {app} <docker-image> <spider-1> ... <spider-N>"
+    if len(sys.argv) < 4:
+        fmt = "usage: {app} <# spiders to run> <docker-image> <spider-1> ... <spider-N>"
         print(fmt.format(app=os.path.split(sys.argv[0])[1]))
         sys.exit(1)
 
-    docker_image = sys.argv[1]
-    spiders_left_to_run = sys.argv[2:]
+    max_number_spiders_to_run = int(sys.argv[1])
+    docker_image = sys.argv[2]
+    spiders_left_to_run = sys.argv[3:]
 
     running_spiders = []
     run_spiders = []
-
-    max_number_spiders_to_run = 2
 
     while spiders_left_to_run or running_spiders:
         # check if any of the running spiders have finished
