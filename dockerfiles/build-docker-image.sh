@@ -4,14 +4,13 @@ set -e
 
 SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
 
-if [ $# != 3 ]; then
-    echo "usage: $(basename "$0") <package> <image-name> <password>" >&2
+if [ $# != 2 ]; then
+    echo "usage: $(basename "$0") <package> <image-name>" >&2
     exit 1
 fi
 
 PACKAGE=${1:-}
 IMAGE_NAME=${2:-}
-PASSWORD=${3:-}
 
 CONTEXT_DIR=$(mktemp -d 2> /dev/null || mktemp -d -t DAS)
 
@@ -31,9 +30,5 @@ docker build \
 
 rm -rf "${CONTEXT_DIR}"
 rm -f "${TEMP_DOCKERFILE}"
-
-echo "${PASSWORD}" | docker login --username="${IMAGE_NAME%/*}" --password-stdin
-docker push "${IMAGE_NAME}"
-docker logout
 
 exit 0
