@@ -75,8 +75,7 @@ jobs:
           command: |
             dockerfiles/build-docker-image.sh \
               "dist/gaming_spiders-$(python-version.sh).tar.gz" \
-              "${DOCKER_TEMP_IMAGE}" \
-              "${DOCKER_PASSWORD}"
+              "${DOCKER_TEMP_IMAGE}"
       - run:
           name: Test Docker Image
           command: |
