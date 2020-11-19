@@ -8,6 +8,26 @@ import subprocess
 import time
 
 
+class SpidersContainer(object):
+
+    def __init__(self, docker_image):
+        object.__init__(self)
+
+        self.docker_image = docker_image
+
+    def spiders(self):
+        args = [
+            'docker',
+            'run',
+            self.docker_image,
+            'spiders.py',
+        ]
+
+        output = json.loads(subprocess.check_output(args).decode('UTF-8').strip())
+
+        return list(output.keys())
+
+
 class CrawlContainer(object):
 
     def __init__(self, spider, docker_image):
@@ -64,15 +84,16 @@ class CrawlContainer(object):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 5:
-        fmt = "usage: {app} <#-spiders-2-run> <output-dir> <docker-image> <spider-1> ... <spider-N>"
+    if len(sys.argv) != 4:
+        fmt = "usage: {app} <#-spiders-2-run-at-same-time> <output-dir> <docker-image>"
         print(fmt.format(app=os.path.split(sys.argv[0])[1]))
         sys.exit(1)
 
     max_number_spiders_to_run = int(sys.argv[1])
     output_dir = sys.argv[2]
     docker_image = sys.argv[3]
-    spiders_left_to_run = sys.argv[4:]
+
+    spiders_left_to_run = SpidersContainer(docker_image).spiders()
 
     running_spiders = []
     run_spiders = []
