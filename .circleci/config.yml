@@ -85,7 +85,7 @@ jobs:
             # -- we reverted to a single job
             #
             tests/integration/run-all-spiders-in-docker.py \
-              2 \
+              1 \
               "${CRAWL_OUTPUT_DIR}" \
               "${DOCKER_TEMP_IMAGE}"
 
