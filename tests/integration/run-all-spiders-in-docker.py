@@ -82,6 +82,39 @@ class CrawlContainer(object):
 
         return self.output()['_metadata']['status']['code'] == 0
 
+    def save_output(self, output_dir):
+        spider_output_dir = os.path.join(output_dir, os.path.splitext(self.spider)[0])
+        os.makedirs(spider_output_dir)
+
+        output = self.output()
+        if not output:
+            return
+
+        self._copy_debug_file(output, 'screenshot', spider_output_dir, 'screenshot.png')
+        self._copy_debug_file(output, 'crawlLog', spider_output_dir, 'crawl-log.txt')
+        self._copy_debug_file(output, 'chromeDriverLog', spider_output_dir, 'chrome-driver-log.txt')
+
+        with open(os.path.join(spider_output_dir, 'crawl-output.json'), 'w', encoding='utf8') as f:
+            json.dump(output, f, ensure_ascii=False)
+
+    def _copy_debug_file(self, output, debug_file_property, spider_output_dir, debug_filename):
+        filename_in_docker_container = output.get('_debug', {}).get(debug_file_property, None)
+        if not filename_in_docker_container:
+            return None
+
+        args = [
+            'docker',
+            'container',
+            'cp',
+            '{container_id}:{filename_in_docker_container}'.format(
+                container_id=self.container_id,
+                filename_in_docker_container=filename_in_docker_container),
+            os.path.join(spider_output_dir, debug_filename),
+        ]
+        subprocess.check_output(args)
+
+        output['_debug'][debug_file_property] = debug_filename
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
@@ -102,11 +135,13 @@ if __name__ == "__main__":
         # check if any of the running spiders have finished
         for running_spider in running_spiders:
             if running_spider.is_finished():
-                running_spiders.remove(running_spider)
-                run_spiders.append(running_spider)
                 print('>>>{spider}<<< finished running - {status}'.format(
                     spider=running_spider.spider,
                     status='success' if running_spider.is_success() else 'failure'))
+                running_spider.save_output(output_dir)
+
+                running_spiders.remove(running_spider)
+                run_spiders.append(running_spider)
             else:
                 print('>>>{spider}<<< still running'.format(spider=running_spider.spider))
 
