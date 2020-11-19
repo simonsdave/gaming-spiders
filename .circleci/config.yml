@@ -1,8 +1,9 @@
 ---
 version: 2.1
 
-executors:
-  dev-env:
+jobs:
+  build_package_test_deploy:
+    working_directory: ~/repo
     environment:
       DOCKER_TEMP_IMAGE: simonsdave/gaming-spiders:bindle
       CRAWL_OUTPUT_DIR: /tmp/crawl-output
@@ -12,11 +13,6 @@ executors:
         auth:
           username: $DOCKER_EXECUTOR_DOCKERHUB_USERNAME
           password: $DOCKER_EXECUTOR_DOCKERHUB_PASSWORD
-
-jobs:
-  build_package_test_deploy:
-    working_directory: ~/repo
-    executor: dev-env
     steps:
       - checkout
       - run: check-consistent-clf-version.sh --verbose
