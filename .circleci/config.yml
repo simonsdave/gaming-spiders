@@ -91,7 +91,7 @@ jobs:
 
             pushd "${CRAWL_OUTPUT_DIR}"; zip -r "${CRAWL_OUTPUT_ZIPFILE}" .; popd
       - store_artifacts:
-          path: ${CRAWL_OUTPUT_ZIPFILE}
+          path: $CRAWL_OUTPUT_ZIPFILE
           destination: crawl-output.zip
       - run:
           name: fail workflow if crawl failed
