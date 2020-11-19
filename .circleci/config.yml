@@ -107,6 +107,7 @@ jobs:
             #
             for CRAWL_OUTPUT_DOT_JSON in $(find "${CRAWL_OUTPUT_DIR}" -name crawl-output.json); do
                 if [[ "$(jq ._metadata.status.code "${CRAWL_OUTPUT_DOT_JSON}")" != "0" ]]; then
+                    echo "Found failure in ${CRAWL_OUTPUT_DOT_JSON}"
                     false
                 fi
             done
