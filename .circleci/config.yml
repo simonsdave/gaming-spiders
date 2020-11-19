@@ -7,7 +7,6 @@ jobs:
     environment:
       DOCKER_TEMP_IMAGE: simonsdave/gaming-spiders:bindle
       CRAWL_OUTPUT_DIR: /tmp/crawl-output
-      CRAWL_OUTPUT_ZIPFILE: /tmp/crawl-output.zip
     docker:
       - image: simonsdave/cloudfeaster-dev-env:v0.9.45
         auth:
@@ -85,9 +84,13 @@ jobs:
               "${CRAWL_OUTPUT_DIR}" \
               "${DOCKER_TEMP_IMAGE}"
 
-            pushd "${CRAWL_OUTPUT_DIR}"; zip -r "${CRAWL_OUTPUT_ZIPFILE}" .; popd
+            pushd "${CRAWL_OUTPUT_DIR}"; zip -r /tmp/crawl-output.zip .; popd
       - store_artifacts:
-          path: $CRAWL_OUTPUT_ZIPFILE
+          # :BUG'ish: should be able to use environment variable
+          # on the path since the filename is shared between this step
+          # and the preivous one but CI pipeline didn't seem to replace
+          # the path's value when it was an environment variable
+          path: /tmp/crawl-output.zip
           destination: crawl-output.zip
       - run:
           name: fail workflow if crawl failed
