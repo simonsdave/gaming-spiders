@@ -48,7 +48,7 @@ commands:
             done
 
 jobs:
-  build_package_test_deploy:
+  build_package_test_and_deploy:
     working_directory: ~/repo
     environment:
       DOCKER_TEMP_IMAGE: simonsdave/gaming-spiders:bindle
@@ -135,7 +135,7 @@ jobs:
                 "${DOCKER_PASSWORD}"
             fi
 
-  pull_test:
+  pull_and_test:
     working_directory: ~/repo
     environment:
       DOCKER_IMAGE: simonsdave/gaming-spiders:latest
@@ -158,7 +158,7 @@ workflows:
   version: 2
   commit:
     jobs:
-      - build_package_test_deploy:
+      - build_package_test_and_deploy:
           context:
             - gaming-spiders
             - docker-executor
@@ -173,7 +173,7 @@ workflows:
               only:
                 - master
     jobs:
-      - pull_test:
+      - pull_and_test:
           context:
             - gaming-spiders
             - docker-executor
