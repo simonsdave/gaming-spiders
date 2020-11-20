@@ -2,6 +2,10 @@
 version: 2.1
 
 commands:
+  my_setup_remote_docker:
+    steps:
+      - setup_remote_docker:
+          version: 19.03.13
   test_docker_image:
     parameters:
       docker_image:
@@ -109,8 +113,7 @@ jobs:
       - store_artifacts:
           path: dist
           destination: dist
-      - setup_remote_docker:
-          version: 19.03.13
+      - my_setup_remote_docker
       - run:
           name: Build Docker Image
           command: |
@@ -146,8 +149,7 @@ jobs:
           username: $DOCKER_EXECUTOR_DOCKERHUB_USERNAME
           password: $DOCKER_EXECUTOR_DOCKERHUB_PASSWORD
     steps:
-      - setup_remote_docker:
-          version: 19.03.13
+      - my_setup_remote_docker
       - run:
           name: docker pull
           command: docker pull "${DOCKER_IMAGE}"
