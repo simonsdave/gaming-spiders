@@ -135,6 +135,25 @@ jobs:
                 "${DOCKER_PASSWORD}"
             fi
 
+  pull_test:
+    working_directory: ~/repo
+    environment:
+      DOCKER_IMAGE: simonsdave/gaming-spiders:latest
+      CRAWL_OUTPUT_DIR: /tmp/crawl-output
+    docker:
+      - image: simonsdave/cloudfeaster-dev-env:v0.9.45
+        auth:
+          username: $DOCKER_EXECUTOR_DOCKERHUB_USERNAME
+          password: $DOCKER_EXECUTOR_DOCKERHUB_PASSWORD
+    steps:
+      - setup_remote_docker:
+          version: 19.03.13
+      - run:
+          name: docker pull
+          command: docker pull "${DOCKER_IMAGE}"
+      - test_docker_image:
+          docker_image: "${DOCKER_IMAGE}"
+
 workflows:
   version: 2
   commit:
@@ -154,7 +173,7 @@ workflows:
               only:
                 - master
     jobs:
-      - build_package_test_deploy:
+      - pull_test:
           context:
             - gaming-spiders
             - docker-executor
