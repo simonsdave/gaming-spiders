@@ -24,4 +24,6 @@ RUN rm -f /tmp/package.tar.gz
 RUN adduser headless --system
 USER headless
 
+ENV CLF_CHROME_OPTIONS --headless|--window-size=1280x1024|--no-sandbox|--disable-dev-shm-usage|--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36
+
 ENV DEBIAN_FRONTEND newt
