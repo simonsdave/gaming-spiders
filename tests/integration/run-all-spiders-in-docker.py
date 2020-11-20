@@ -25,7 +25,10 @@ class SpidersContainer(object):
 
         output = json.loads(subprocess.check_output(args).decode('UTF-8').strip())
 
-        return list(output.keys())
+        rv = list(output.keys())
+        rv.sort()
+
+        return rv
 
 
 class CrawlContainer(object):
@@ -148,7 +151,7 @@ if __name__ == "__main__":
         # start spiders left to run until max # of spiders running reached
         while spiders_left_to_run:
             if len(running_spiders) < max_number_spiders_to_run:
-                spider = spiders_left_to_run.pop()
+                spider = spiders_left_to_run.pop(0)
                 cc = CrawlContainer(spider, docker_image)
                 cc.start()
                 running_spiders.append(cc)
