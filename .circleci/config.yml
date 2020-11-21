@@ -149,6 +149,7 @@ jobs:
           username: $DOCKER_EXECUTOR_DOCKERHUB_USERNAME
           password: $DOCKER_EXECUTOR_DOCKERHUB_PASSWORD
     steps:
+      - checkout
       - my_setup_remote_docker
       - run:
           name: docker pull
