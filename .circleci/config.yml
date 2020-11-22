@@ -18,8 +18,16 @@ commands:
     parameters:
       docker_image:
         type: string
-    environment:
-      CRAWL_OUTPUT_DIR: /tmp/crawl-output
+      # crawl_output_dir is a parameter only because this value is shared
+      # across stesp and commands can't have environment variables
+      crawl_output_dir:
+        default: "/tmp/crawl-output"
+        type: string
+      # crawl_output_zip_file is a parameter only because this value is shared
+      # across stesp and commands can't have environment variables
+      crawl_output_zip_file:
+        default: "/tmp/crawl-output.zip"
+        type: string
     steps:
       - run:
           name: Test Docker Image
@@ -31,16 +39,16 @@ commands:
             #
             tests/integration/run-all-spiders-in-docker.py \
               3 \
-              "${CRAWL_OUTPUT_DIR}" \
+              << parameters.crawl_output_dir >> \
               << parameters.docker_image >>
 
-            pushd "${CRAWL_OUTPUT_DIR}"; zip -r /tmp/crawl-output.zip .; popd
+            pushd "<< parameters.crawl_output_dir >>"; zip -r "<< parameters.crawl_output_zip_file >>" .; popd
       - store_artifacts:
           # :BUG'ish: should be able to use environment variable
           # on the path since the filename is shared between this step
           # and the preivous one but CI pipeline didn't seem to replace
           # the path's value when it was an environment variable
-          path: /tmp/crawl-output.zip
+          path: << parameters.crawl_output_zip_file >>
           destination: crawl-output.zip
       - run:
           name: fail workflow if crawl failed
@@ -54,9 +62,9 @@ commands:
             # to explain the need for this somewhat might feel like odd commands
             # below.
             #
-            for CRAWL_OUTPUT_DOT_JSON in $(find "${CRAWL_OUTPUT_DIR}" -name crawl-output.json); do
-                if [[ "$(jq ._metadata.status.code "${CRAWL_OUTPUT_DOT_JSON}")" != "0" ]]; then
-                    echo "Found failure in ${CRAWL_OUTPUT_DOT_JSON}"
+            for CRAWL_OUTPUT_DOT_JSON in $(find "<< parameters.crawl_output_dir >>" -name crawl-output.json); do
+                if [[ "$(jq ._metadata.status.code '<< parameters.crawl_output_dir >>')" != "0" ]]; then
+                    echo "Found failure in << parameters.crawl_output_dir >>"
                     false
                 fi
             done
@@ -64,7 +72,7 @@ commands:
 jobs:
   build_package_test_and_deploy:
     working_directory: ~/repo
-    executor: my_executtor
+    executor: my_executor
     environment:
       DOCKER_TEMP_IMAGE: simonsdave/gaming_spiders-spiders:bindle
     steps:
@@ -145,7 +153,7 @@ jobs:
 
   pull_and_test:
     working_directory: ~/repo
-    executor: my_executtor
+    executor: my_executor
     environment:
       DOCKER_IMAGE: simonsdave/gaming_spiders-spiders:latest
     steps:
