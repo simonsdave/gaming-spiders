@@ -188,4 +188,3 @@ workflows:
           context:
             - gaming-spiders
             - docker-executor
-
