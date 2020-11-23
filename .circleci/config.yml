@@ -32,6 +32,8 @@ commands:
       - run:
           name: Test Docker Image
           command: |
+            # :TEMP: :DEBUG:
+            docker images
             #
             # https://support.circleci.com/hc/en-us/articles/360019182513-Build-a-Docker-image-in-one-job-and-use-it-in-another-job
             # https://discuss.circleci.com/t/can-docker-images-be-preserved-between-jobs-in-a-workflow-without-a-manual-load-save/23388
