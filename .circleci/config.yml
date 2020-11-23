@@ -74,7 +74,7 @@ jobs:
     working_directory: ~/repo
     executor: my_executor
     environment:
-      DOCKER_TEMP_IMAGE: simonsdave/gaming_spiders-spiders:bindle
+      DOCKER_TEMP_IMAGE: simonsdave/gaming-spiders:bindle
     steps:
       - checkout
       - run: check-consistent-clf-version.sh --verbose
@@ -155,7 +155,7 @@ jobs:
     working_directory: ~/repo
     executor: my_executor
     environment:
-      DOCKER_IMAGE: simonsdave/gaming_spiders-spiders:latest
+      DOCKER_IMAGE: simonsdave/gaming-spiders:latest
     steps:
       - checkout
       - my_setup_remote_docker
