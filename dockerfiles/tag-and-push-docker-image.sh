@@ -21,7 +21,6 @@ NEW_IMAGE_NAME="${EXISTING_IMAGE_NAME%:*}:${TAG}"
 
 echo "${PASSWORD}" | docker login --username="${NEW_IMAGE_NAME%/*}" --password-stdin
 
-docker pull "${EXISTING_IMAGE_NAME}"
 docker tag "${EXISTING_IMAGE_NAME}" "${NEW_IMAGE_NAME}"
 docker push "${NEW_IMAGE_NAME}"
 
