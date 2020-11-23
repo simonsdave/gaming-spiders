@@ -63,8 +63,8 @@ commands:
             # below.
             #
             for CRAWL_OUTPUT_DOT_JSON in $(find "<< parameters.crawl_output_dir >>" -name crawl-output.json); do
-                if [[ "$(jq ._metadata.status.code '<< parameters.crawl_output_dir >>')" != "0" ]]; then
-                    echo "Found failure in << parameters.crawl_output_dir >>"
+                if [[ "$(jq ._metadata.status.code "${CRAWL_OUTPUT_DOT_JSON}")" != "0" ]]; then
+                    echo "Found failure in ${CRAWL_OUTPUT_DOT_JSON}"
                     false
                 fi
             done
