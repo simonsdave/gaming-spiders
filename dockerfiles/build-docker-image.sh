@@ -23,10 +23,6 @@ sed \
     < "${SCRIPT_DIR_NAME}/Dockerfile.template" \
     > "${TEMP_DOCKERFILE}"
 
-echo "${TEMP_DOCKERFILE}"
-
-exit 0
-
 docker build \
     -t "${IMAGE_NAME}" \
     --file "${TEMP_DOCKERFILE}" \
