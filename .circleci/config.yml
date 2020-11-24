@@ -4,7 +4,7 @@ version: 2.1
 executors:
   my_executor:
     docker:
-      - image: simonsdave/cloudfeaster-dev-env:v0.9.45
+      - image: simonsdave/cloudfeaster-dev-env:v0.9.46
         auth:
           username: $DOCKER_EXECUTOR_DOCKERHUB_USERNAME
           password: $DOCKER_EXECUTOR_DOCKERHUB_PASSWORD
@@ -78,6 +78,7 @@ jobs:
     steps:
       - checkout
       - run: check-consistent-clf-version.sh --verbose
+      # :TODO: uncomment after cloudfeaster issue # 49 is fixed
       # - run: check-circleci-config.sh
       - restore_cache:
           keys:

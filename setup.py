@@ -40,7 +40,6 @@ setup(
         'gaming_spiders',
     ],
     scripts=[
-        'bin/spiders.py',
         'gaming_spiders/bigfishonlinegames.py',
         'gaming_spiders/gamehouseonlinegames.py',
         'gaming_spiders/hiddenobjectgames.py',
@@ -53,7 +52,7 @@ setup(
         'gaming_spiders/msnonlinegames.py',
     ],
     install_requires=[
-        'cloudfeaster==0.9.45',
+        'cloudfeaster==0.9.46',
     ],
     version=version,
     description='Gaming Spiders',

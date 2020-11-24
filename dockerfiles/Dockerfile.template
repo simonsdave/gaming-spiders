@@ -1,11 +1,4 @@
-# for testing/debugging
-#
-#   docker run --rm simonsdave/gaming-spiders spiders.py | jq .
-#   docker run --rm simonsdave/gaming-spiders spiders.py | jq 'keys[]' | sed 's|"||g'
-#   docker run --rm --security-opt seccomp:unconfined simonsdave/gaming-spiders spiderhost.py gaming_spiders.msnonlinegames.MSNOnlineGamesSpider | jq .
-#
-
-FROM simonsdave/cloudfeaster-dev-env:v%CLF_VERSION%
+FROM simonsdave/cloudfeaster:v%CLF_VERSION%
 
 MAINTAINER Dave Simons
 
@@ -21,11 +14,6 @@ COPY package.tar.gz /tmp/package.tar.gz
 RUN python3.7 -m pip install /tmp/package.tar.gz
 RUN rm -f /tmp/package.tar.gz
 
-# :TEMP: :REMOVE WHEN UPGRADE TO NEXT REV OF Cloudfeaster
-RUN adduser headless --system
 USER headless
-
-# :TEMP: :REMOVE WHEN UPGRADE TO NEXT REV OF Cloudfeaster
-ENV CLF_CHROME_OPTIONS --headless|--window-size=1280x1024|--no-sandbox|--disable-dev-shm-usage|--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36
 
 ENV DEBIAN_FRONTEND newt

@@ -11,9 +11,14 @@ fi
 
 DOCKER_IMAGE=${1:-}
 
+CIRCLE_CI_EXECUTOR=$(grep 'image:' < "$(repo-root-dir.sh)/.circleci/config.yml" | \
+    grep cloudfeaster-dev-env |
+    sed -e 's|^.*\-[[:space:]]*image\:[[:space:]]*||g' |
+    sed -e 's|[[:space:]]*$||g')
+
 TEMP_DOCKERFILE=$(mktemp 2> /dev/null || mktemp -t DAS)
 sed \
-    -e "s|%CIRCLE_CI_EXECUTOR%|$(get-circle-ci-executor.sh)|g" \
+    -e "s|%CIRCLE_CI_EXECUTOR%|${CIRCLE_CI_EXECUTOR}|g" \
     < "${SCRIPT_DIR_NAME}/Dockerfile.template" \
     > "${TEMP_DOCKERFILE}"
 
