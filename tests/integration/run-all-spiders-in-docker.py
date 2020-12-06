@@ -26,6 +26,7 @@ class SpidersContainer(object):
         output = json.loads(subprocess.check_output(args).decode('UTF-8').strip())
 
         rv = list(output.keys())
+        rv.remove('_metadata')
         rv.sort()
 
         return rv
