@@ -19,43 +19,47 @@ First follow [these](dev_env/README.md) instructions to get your development env
 Now let's run one of the spiders.
 
 ```bash
-(env) ~> run-spider.sh bigfishonlinegames.py | jq .
+~> run-spider.sh gamehouseonlinegames.py | jq .
 {
   "1": {
-    "title": "Hidden Express",
-    "link": "https://www.bigfishgames.com/online-games/25540/en_hidden-express/index.html"
+    "title": "TextTwist 2",
+    "link": "https://www.gamehouse.com/online-games/texttwist-2"
   },
   "2": {
-    "title": "Cubis Gold 2",
-    "link": "https://www.bigfishgames.com/online-games/1909/en_cubis-gold-2/index.html"
+    "title": "Daily Mahjong",
+    "link": "https://www.gamehouse.com/online-games/daily-mahjong"
   },
   "3": {
-    "title": "Fitz!",
-    "link": "https://www.bigfishgames.com/online-games/2222/en_fitz/index.html"
+    "title": "Bubblez!",
+    "link": "https://www.gamehouse.com/online-games/bubblez!"
   },
   "4": {
-    "title": "Bubblez!",
-    "link": "https://www.bigfishgames.com/online-games/2196/en_bubblez/index.html"
+    "title": "Rainforest Adventure",
+    "link": "https://www.gamehouse.com/online-games/rainforest-adventure"
   },
   "5": {
-    "title": "Algerian Patience Solitaire",
-    "link": "https://www.bigfishgames.com/online-games/3887/en_algerian-patience-solitaire/index.html"
+    "title": "Jewel Quest",
+    "link": "https://www.gamehouse.com/online-games/jewel-quest"
   },
   "6": {
-    "title": "Dreamfields",
-    "link": "https://www.bigfishgames.com/online-games/25550/en_dreamfields-free-to-play/index.html"
+    "title": "Snow Queen 2",
+    "link": "https://www.gamehouse.com/online-games/snow-queen-2"
   },
   "7": {
-    "title": "The Rise of Atlantis",
-    "link": "https://www.bigfishgames.com/online-games/1889/en_riseofatlantis/index.html"
+    "title": "Rummy",
+    "link": "https://www.gamehouse.com/online-games/rummy"
   },
   "8": {
-    "title": "Dragon Mahjong",
-    "link": "https://www.bigfishgames.com/online-games/21826/en_dragon-mahjong/index.html"
+    "title": "Mah Jong Medley",
+    "link": "https://www.gamehouse.com/online-games/mah-jong-medley"
   },
   "9": {
-    "title": "Shanghai",
-    "link": "https://www.bigfishgames.com/online-games/8031/en_shanghai/index.html"
+    "title": "Mahjong The Endless Journey",
+    "link": "https://www.gamehouse.com/online-games/mahjong-the-endless-journey"
+  },
+  "10": {
+    "title": "Mahjongg Gardens",
+    "link": "https://www.gamehouse.com/online-games/mahjongg-gardens"
   },
   "_metadata": {
     "status": {
@@ -63,22 +67,22 @@ Now let's run one of the spiders.
       "message": "Ok"
     },
     "spider": {
-      "name": "__main__.BigFishOnlineGamesSpider",
-      "version": "sha256:44336fe0596a789d429c1840f69823c11803887fe804763b66f1ab7e12aaf95e"
+      "name": "gamehouseonlinegames.py",
+      "version": "sha256:a0717e4bef6cf41069b40efc8d6bb6941e5e899231e12d5a1af083c62b74fe1d"
     },
     "crawlArgs": [],
     "crawlTime": {
-      "started": "2020-03-08T20:41:17.424941+00:00",
-      "durationInMs": 4219
+      "started": "2020-12-29T21:30:46.707601+00:00",
+      "durationInMs": 3957
     }
   },
   "_debug": {
-    "screenshot": "/var/folders/7x/rr443kj575s8zz54jrbrp4jc0000gn/T/tmp.JYTivkpU/screenshot.png",
-    "crawlLog": "/var/folders/7x/rr443kj575s8zz54jrbrp4jc0000gn/T/tmp.JYTivkpU/crawl-log.txt",
-    "chromeDriverLog": "/var/folders/7x/rr443kj575s8zz54jrbrp4jc0000gn/T/tmp.JYTivkpU/chromedriver-log.txt"
+    "screenshot": "/var/folders/zc/51nmqy_93559vqw_1y526y240000gn/T/tmp.ConMqmqP/screenshot.png",
+    "crawlLog": "/var/folders/zc/51nmqy_93559vqw_1y526y240000gn/T/tmp.ConMqmqP/crawl-log.txt",
+    "chromeDriverLog": "/var/folders/zc/51nmqy_93559vqw_1y526y240000gn/T/tmp.ConMqmqP/chromedriver-log.txt"
   }
 }
-(env) ~>
+~>
 ```
 
 ## What Next
