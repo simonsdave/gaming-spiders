@@ -9,7 +9,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 * add CircleCI docker executor [authenticated pull](https://circleci.com/docs/2.0/private-images/)
-* temp add of ```bin/spiders.py```
 * removed ```bigfishonlinegames.py``` since no longer seem to have browser based games:-(
 
 ### Changed
