@@ -40,7 +40,6 @@ setup(
         'gaming_spiders',
     ],
     scripts=[
-        'gaming_spiders/bigfishonlinegames.py',
         'gaming_spiders/gamehouseonlinegames.py',
         'gaming_spiders/hiddenobjectgames.py',
         'gaming_spiders/match3games.py',
