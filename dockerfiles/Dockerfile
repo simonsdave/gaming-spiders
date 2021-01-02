@@ -1,4 +1,5 @@
-FROM simonsdave/cloudfeaster-lite:v%CLF_VERSION%
+ARG CLF_VERSION
+FROM simonsdave/cloudfeaster-lite:v${CLF_VERSION}
 
 MAINTAINER Dave Simons
 

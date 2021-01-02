@@ -13,22 +13,16 @@ PACKAGE=${1:-}
 IMAGE_NAME=${2:-}
 
 CONTEXT_DIR=$(mktemp -d 2> /dev/null || mktemp -d -t DAS)
-
 cp "${PACKAGE}" "${CONTEXT_DIR}/package.tar.gz"
 
 CLF_VERSION=$(grep cloudfeaster== "$(repo-root-dir.sh)/setup.py" | sed -e "s|^[[:space:]]*['\"]cloudfeaster==||g" | sed -e "s|['\"].*$||g")
-TEMP_DOCKERFILE=$(mktemp 2> /dev/null || mktemp -t DAS)
-sed \
-    -e "s|%CLF_VERSION%|${CLF_VERSION}|g" \
-    < "${SCRIPT_DIR_NAME}/Dockerfile.template" \
-    > "${TEMP_DOCKERFILE}"
 
 docker build \
     -t "${IMAGE_NAME}" \
-    --file "${TEMP_DOCKERFILE}" \
+    --build-arg "CLF_VERSION=${CLF_VERSION}" \
+    --file "${SCRIPT_DIR_NAME}/Dockerfile" \
     "${CONTEXT_DIR}"
 
 rm -rf "${CONTEXT_DIR}"
-rm -f "${TEMP_DOCKERFILE}"
 
 exit 0
