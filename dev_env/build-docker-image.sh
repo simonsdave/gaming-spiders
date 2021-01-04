@@ -16,17 +16,12 @@ CIRCLE_CI_EXECUTOR=$(grep 'image:' < "$(repo-root-dir.sh)/.circleci/config.yml" 
     sed -e 's|^.*\-[[:space:]]*image\:[[:space:]]*||g' |
     sed -e 's|[[:space:]]*$||g')
 
-TEMP_DOCKERFILE=$(mktemp 2> /dev/null || mktemp -t DAS)
-sed \
-    -e "s|%CIRCLE_CI_EXECUTOR%|${CIRCLE_CI_EXECUTOR}|g" \
-    < "${SCRIPT_DIR_NAME}/Dockerfile.template" \
-    > "${TEMP_DOCKERFILE}"
-
 CONTEXT_DIR=$(mktemp -d 2> /dev/null || mktemp -d -t DAS)
 
 docker build \
     -t "${DOCKER_IMAGE}" \
-    --file "${TEMP_DOCKERFILE}" \
+    --file "${SCRIPT_DIR_NAME}/Dockerfile" \
+    --build-arg "CIRCLE_CI_EXECUTOR=${CIRCLE_CI_EXECUTOR}" \
     "${CONTEXT_DIR}"
 
 rm -rf "${CONTEXT_DIR}"
