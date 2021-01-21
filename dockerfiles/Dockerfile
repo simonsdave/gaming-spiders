@@ -1,12 +1,12 @@
 ARG CLF_VERSION
-FROM simonsdave/cloudfeaster-lite:v${CLF_VERSION}
+FROM simonsdave/cloudfeaster-lite:latest
 
 MAINTAINER Dave Simons
 
-ENV DEBIAN_FRONTEND noninteractive
+USER root
 
 COPY package.tar.gz /tmp/package.tar.gz
-RUN python3.7 -m pip install /tmp/package.tar.gz
+RUN pip install /tmp/package.tar.gz
 RUN rm -f /tmp/package.tar.gz
 
-ENV DEBIAN_FRONTEND newt
+USER headless
