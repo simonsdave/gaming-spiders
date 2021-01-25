@@ -1,11 +1,24 @@
 #!/usr/bin/env python3.7
 # -*- coding: utf-8 -*-
 
+#
+# docker run \
+#   --rm \
+#   -it \
+#   -v /var/run/docker.sock:/var/run/docker.sock \
+#   -v $(repo-root-dir.sh):/app \
+#   $DEV_ENV_DOCKER_IMAGE \
+#   /bin/bash
+#
+
+import datetime
 import json
 import os
 import sys
 import subprocess
 import time
+
+import dateutil.parser
 
 
 class SpidersContainer(object):
@@ -69,6 +82,19 @@ class CrawlContainer(object):
         status = json.loads(subprocess.check_output(args).decode('UTF-8').strip())[0]['State']['Status']
         return status != 'running'
 
+    def kill(self):
+        if not self.container_id:
+            return False
+
+        args = [
+            'docker',
+            'kill',
+            self.container_id,
+        ]
+        subprocess.check_output(args)
+
+        return True
+
     def output(self):
         if not self.is_finished():
             return None
@@ -86,13 +112,29 @@ class CrawlContainer(object):
 
         return self.output()['_metadata']['status']['code'] == 0
 
-    def save_output(self, output_dir):
+    def number_seconds_running(self):
+        if not self.container_id:
+            return None
+
+        args = [
+            'docker',
+            'container',
+            'inspect',
+            self.container_id,
+        ]
+        start_date_as_str = json.loads(subprocess.check_output(args).decode('UTF-8').strip())[0]['State']['StartedAt']
+        start_date = dateutil.parser.parse(start_date_as_str)
+        now = datetime.datetime.utcnow().replace(tzinfo=start_date.tzinfo)
+        return (now - start_date).total_seconds()
+
+    def save_output(self, output_dir, output=None):
         spider_output_dir = os.path.join(output_dir, os.path.splitext(self.spider)[0])
         os.makedirs(spider_output_dir)
 
-        output = self.output()
         if not output:
-            return
+            output = self.output()
+            if not output:
+                return
 
         self._copy_debug_file(output, 'screenshot', spider_output_dir, 'screenshot.png')
         self._copy_debug_file(output, 'crawlLog', spider_output_dir, 'crawl-log.txt')
@@ -121,14 +163,15 @@ class CrawlContainer(object):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        fmt = "usage: {app} <#-spiders-2-run-at-same-time> <output-dir> <docker-image>"
+    if len(sys.argv) != 5:
+        fmt = "usage: {app} <#-spiders-2-run-at-same-time> <max-secs-for-spider-to-run> <output-dir> <docker-image>"
         print(fmt.format(app=os.path.split(sys.argv[0])[1]))
         sys.exit(1)
 
     max_number_spiders_to_run = int(sys.argv[1])
-    output_dir = sys.argv[2]
-    docker_image = sys.argv[3]
+    max_seconds_spiders_to_run = int(sys.argv[2])
+    output_dir = sys.argv[3]
+    docker_image = sys.argv[4]
 
     spiders_left_to_run = SpidersContainer(docker_image).spiders()
 
@@ -147,7 +190,29 @@ if __name__ == "__main__":
                 running_spiders.remove(running_spider)
                 run_spiders.append(running_spider)
             else:
-                print('>>>{spider}<<< still running'.format(spider=running_spider.spider))
+                number_seconds_running = running_spider.number_seconds_running()
+
+                if max_seconds_spiders_to_run < number_seconds_running:
+                    msg_fmt = (
+                        '>>>{spider}<<< ran for {seconds:.0f} '
+                        'seconds which is too long (> {max} seconds) - killing spider'
+                    )
+                    print(msg_fmt.format(
+                        spider=running_spider.spider,
+                        seconds=number_seconds_running,
+                        max=max_seconds_spiders_to_run))
+
+                    running_spider.kill()
+                    running_spider.save_output(
+                        output_dir,
+                        {'_metadata': {'status': {'code': 400, 'message': 'spider took too long to run'}}})
+
+                    running_spiders.remove(running_spider)
+                    run_spiders.append(running_spider)
+                else:
+                    print('>>>{spider}<<< still running after {seconds:.0f} seconds'.format(
+                        spider=running_spider.spider,
+                        seconds=number_seconds_running))
 
         # start spiders left to run until max # of spiders running reached
         while spiders_left_to_run:
