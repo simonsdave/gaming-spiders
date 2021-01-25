@@ -4,6 +4,8 @@
 import json
 import sys
 
+from selenium.webdriver.support.ui import WebDriverWait
+
 from cloudfeaster import spider
 
 
@@ -16,18 +18,20 @@ class MiniclipSpider(spider.Spider):
         }
 
     def crawl(self, browser):
+        ten_seconds = 10
+        web_driver_wait = WebDriverWait(browser, ten_seconds)
 
         data = {}
 
         li_elements_locator = '//li[starts-with(@class, "counter-")]'
-        li_elements = browser.find_elements_by_xpath(li_elements_locator)
+        li_elements = web_driver_wait.until(lambda browser: browser.find_elements_by_xpath(li_elements_locator))
         for li_element in li_elements:
             span_element_locator = './/span'
-            span_element = li_element.find_element_by_xpath(span_element_locator)
+            span_element = web_driver_wait.until(lambda browser: li_element.find_element_by_xpath(span_element_locator))
             rank = span_element.get_int()
 
             link_element_locator = './/a'
-            link_element = li_element.find_element_by_xpath(link_element_locator)
+            link_element = web_driver_wait.until(lambda browser: li_element.find_element_by_xpath(link_element_locator))
             link = link_element.get_attribute('href')
             title = link_element.get_text()
             title = title[title.find(' ') + 1:]

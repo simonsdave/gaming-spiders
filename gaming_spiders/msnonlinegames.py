@@ -4,6 +4,8 @@
 import json
 import sys
 
+from selenium.webdriver.support.ui import WebDriverWait
+
 from cloudfeaster import spider
 
 
@@ -16,17 +18,19 @@ class MSNOnlineGamesSpider(spider.Spider):
         }
 
     def crawl(self, browser):
+        ten_seconds = 10
+        web_driver_wait = WebDriverWait(browser, ten_seconds)
 
         data = {}
         for rank in range(1, 6):
             locator = '//ol[@id="TopGamesInfo_Top10_Table"]/li[%d]/a' % rank
-            link_element = browser.find_element_by_xpath(locator)
-            link = link_element.get_attribute("href")
+            link_element = web_driver_wait.until(lambda browser: browser.find_element_by_xpath(locator))
+            link = link_element.get_attribute('href')
             title = link_element.get_text()
 
             data[rank] = {
-                "title": title,
-                "link": link,
+                'title': title,
+                'link': link,
             }
 
         return spider.CrawlResponseOk(data)
