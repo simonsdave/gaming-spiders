@@ -4,6 +4,8 @@
 import json
 import sys
 
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from cloudfeaster import spider
@@ -24,8 +26,8 @@ class GamesonlySpider(spider.Spider):
         data = {}
 
         for rank in range(1, 11):
-            link_locator = '//h4[text()="Top rated games"]/../ul/li[text()="%d. "]/a' % rank
-            link_element = web_driver_wait.until(lambda browser: browser.find_element_by_xpath(link_locator))
+            xpath = '//h4[text()="Top rated games"]/../ul/li[text()="%d. "]/a' % rank
+            link_element = web_driver_wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
             data[rank] = {
                 'title': link_element.get_text(),
                 'link': link_element.get_attribute('href'),

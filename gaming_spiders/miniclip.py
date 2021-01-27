@@ -4,6 +4,8 @@
 import json
 import sys
 
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from cloudfeaster import spider
@@ -23,20 +25,15 @@ class MiniclipSpider(spider.Spider):
 
         data = {}
 
-        li_elements_locator = '//li[starts-with(@class, "counter-")]'
-        li_elements = web_driver_wait.until(lambda browser: browser.find_elements_by_xpath(li_elements_locator))
-        for li_element in li_elements:
-            span_element_locator = './/span'
-            span_element = web_driver_wait.until(lambda browser: li_element.find_element_by_xpath(span_element_locator))
-            rank = span_element.get_int()
+        xpath = '//li[starts-with(@class, "counter-")]/a'
+        link_elements = web_driver_wait.until(EC.visibility_of_all_elements_located((By.XPATH, xpath)))
+        for rank in range(0, min(10, len(link_elements))):
+            link_element = link_elements[rank]
 
-            link_element_locator = './/a'
-            link_element = web_driver_wait.until(lambda browser: li_element.find_element_by_xpath(link_element_locator))
             link = link_element.get_attribute('href')
             title = link_element.get_text()
-            title = title[title.find(' ') + 1:]
 
-            data[rank] = {
+            data[rank + 1] = {
                 'title': title,
                 'link': link,
             }
