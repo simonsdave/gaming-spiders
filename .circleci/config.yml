@@ -38,7 +38,7 @@ commands:
             # -- we reverted to a single job
             #
             tests/integration/run-all-spiders-in-docker.py \
-              3 \
+              1 \
               60 \
               << parameters.crawl_output_dir >> \
               << parameters.docker_image >>
