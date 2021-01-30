@@ -4,7 +4,7 @@ version: 2.1
 executors:
   my_executor:
     docker:
-      - image: simonsdave/cloudfeaster-dev-env:v0.9.51
+      - image: simonsdave/cloudfeaster-dev-env:v0.9.52
         auth:
           username: $DOCKER_EXECUTOR_DOCKERHUB_USERNAME
           password: $DOCKER_EXECUTOR_DOCKERHUB_PASSWORD
@@ -35,9 +35,8 @@ commands:
             #
             # https://support.circleci.com/hc/en-us/articles/360019182513-Build-a-Docker-image-in-one-job-and-use-it-in-another-job
             # https://discuss.circleci.com/t/can-docker-images-be-preserved-between-jobs-in-a-workflow-without-a-manual-load-save/23388
-            # -- we reverted to a single job
             #
-            tests/integration/run-all-spiders-in-docker.py \
+            int-test-run-all-spiders-in-ci-pipeline.py \
               1 \
               60 \
               << parameters.crawl_output_dir >> \
@@ -79,7 +78,7 @@ jobs:
     steps:
       - checkout
       - run: check-consistent-clf-version.sh --verbose
-      # - run: check-circleci-config.sh
+      - run: check-circleci-config.sh
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
