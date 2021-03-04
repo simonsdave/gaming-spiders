@@ -17,6 +17,7 @@ CIRCLE_CI_EXECUTOR=$(grep 'image:' < "$(repo-root-dir.sh)/.circleci/config.yml" 
     sed -e 's|[[:space:]]*$||g')
 
 CONTEXT_DIR=$(mktemp -d 2> /dev/null || mktemp -d -t DAS)
+pushd "${SCRIPT_DIR_NAME}/.." > /dev/null && tar zcf "${CONTEXT_DIR}/package.tar.gz" . && popd > /dev/null
 
 docker build \
     -t "${DOCKER_IMAGE}" \
