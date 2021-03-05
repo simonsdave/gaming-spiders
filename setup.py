@@ -78,7 +78,7 @@ setup(
         'gaming_spiders/msnonlinegames.py',
     ],
     install_requires=[
-        'cloudfeaster==0.9.54',
+        'cloudfeaster==0.9.55',
     ],
     version=version,
     description='Gaming Spiders',

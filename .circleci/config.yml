@@ -4,7 +4,7 @@ version: 2.1
 executors:
   my_executor:
     docker:
-      - image: simonsdave/cloudfeaster-dev-env:v0.9.54
+      - image: simonsdave/cloudfeaster-dev-env:v0.9.55
         auth:
           username: $DOCKER_EXECUTOR_DOCKERHUB_USERNAME
           password: $DOCKER_EXECUTOR_DOCKERHUB_PASSWORD
