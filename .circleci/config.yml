@@ -4,7 +4,7 @@ version: 2.1
 executors:
   my_executor:
     docker:
-      - image: simonsdave/cloudfeaster-dev-env:v0.9.55
+      - image: simonsdave/cloudfeaster-dev-env:v0.9.56
         auth:
           username: $DOCKER_EXECUTOR_DOCKERHUB_USERNAME
           password: $DOCKER_EXECUTOR_DOCKERHUB_PASSWORD
@@ -43,8 +43,6 @@ commands:
               << parameters.crawl_output_dir >> \
               << parameters.docker_image >>
 
-            ls -laR "<< parameters.crawl_output_dir >>"
-
             pushd "<< parameters.crawl_output_dir >>"; zip -r "<< parameters.crawl_output_zip_file >>" .; popd
       - store_artifacts:
           # :BUG'ish: should be able to use environment variable
@@ -81,7 +79,7 @@ jobs:
     steps:
       - checkout
       - run: check-consistent-clf-version.sh --verbose
-      # - run: check-circleci-config.sh
+      - run: check-circleci-config.sh
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "setup.py" }}
