@@ -19,6 +19,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
 
 * remove [Snyk](https://snyk.io/) from CI pipeline & docs
+* remove LGTM badges from main README.md
 
 ## [1.5.0] - [2019-07-18]
 
