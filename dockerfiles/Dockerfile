@@ -1,5 +1,5 @@
 ARG CLF_VERSION
-FROM simonsdave/cloudfeaster-lite:v${CLF_VERSION}
+FROM simonsdave/cloudfeaster:v${CLF_VERSION}
 
 LABEL maintainer="Dave Simons"
 
