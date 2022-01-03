@@ -2,7 +2,7 @@
 
 ![Maintained](https://img.shields.io/maintenance/yes/2022.svg)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
-![Python 2.7](https://img.shields.io/badge/python-2.7-FFC100.svg?style=flat)
+[![Python 3.9](https://img.shields.io/badge/python-3.9-blue.svg)](https://www.python.org/downloads/release/python-390/)
 [![Requirements Status](https://requires.io/github/simonsdave/gaming-spiders/requirements.svg?branch=master)](https://requires.io/github/simonsdave/gaming-spiders/requirements/?branch=master)
 [![CodeFactor](https://www.codefactor.io/repository/github/simonsdave/gaming-spiders/badge/master)](https://www.codefactor.io/repository/github/simonsdave/gaming-spiders/overview/master)
 [![CircleCI](https://circleci.com/gh/simonsdave/gaming-spiders.svg?style=shield)](https://circleci.com/gh/simonsdave/gaming-spiders)
