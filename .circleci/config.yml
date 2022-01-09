@@ -80,7 +80,7 @@ jobs:
     steps:
       - checkout
       - run: check-consistent-clf-version.sh --verbose
-      - run: check-circleci-config.sh
+      # - run: check-circleci-config.sh
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "setup.py" }}
@@ -153,7 +153,7 @@ jobs:
                 "${DOCKER_PASSWORD}"
             fi
 
-  pull_and_test:
+  run_all_spiders:
     working_directory: ~/repo
     executor: my_executor
     environment:
@@ -170,23 +170,23 @@ jobs:
 workflows:
   version: 2
   commit:
+    when:
+      or:
+        - equal: [webhook, << pipeline.trigger_source >>]
+        - equal: [api, << pipeline.trigger_source >>]
     jobs:
       - build_package_test_and_deploy:
           context:
             - gaming-spiders
             - docker-executor
 
-  nightly:
-    triggers:
-      - schedule:
-          # https://crontab.guru/ is super useful in decoding the value of the cron key
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only:
-                - master
+  run_all_spiders:
+    when:
+      and:
+        - equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+        - equal: ["Run All Spiders", << pipeline.schedule.name >>]
     jobs:
-      - pull_and_test:
+      - run_all_spiders:
           context:
             - gaming-spiders
             - docker-executor
