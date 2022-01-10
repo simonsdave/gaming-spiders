@@ -14,7 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* cloudfeaster 0.9.30 -> 0.9.58
+* cloudfeaster 0.9.30 -> 0.9.59
 * added 2022 to LICENSE.md
 
 ### Removed
