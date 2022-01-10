@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 * add CircleCI docker executor [authenticated pull](https://circleci.com/docs/2.0/private-images/)
 * removed ```bigfishonlinegames.py``` since no longer seem to have browser based games:-(
+* start using [CircleCI Scheduled Pipelines](https://circleci.com/docs/2.0/scheduled-pipelines)
 
 ### Changed
 

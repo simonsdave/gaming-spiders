@@ -92,9 +92,9 @@ jobs:
           paths:
             - ./env
           key: v1-dependencies-{{ checksum "setup.py" }}
-      - run:
-          name: Run pip check
-          command: run-pip-check.sh
+      # - run:
+      #     name: Run pip check
+      #     command: run-pip-check.sh
       - run:
           name: Lint Python Files
           command: run-flake8.sh
@@ -180,6 +180,29 @@ workflows:
             - gaming-spiders
             - docker-executor
 
+  #
+  # ~> curl \
+  #      -s \
+  #      --header "Circle-Token: ${PERSONAL_API_TOKEN}" \
+  #      -X POST   #      --header 'Content-Type: application/json' \
+  #      --data-raw '{
+  #          "name": "Run All Spiders",
+  #          "description": "Run All Spiders",
+  #          "attribution-actor": "system",
+  #          "parameters": {
+  #          "branch": "master"
+  #        },
+  #          "timetable": {
+  #          "per-hour": 1,
+  #          "hours-of-day": [23],
+  #          "days-of-week": ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
+  #        }
+  #     }' \
+  #     --header 'Accept: application/json' \
+  #     https://circleci.com/api/v2/project/gh/simonsdave/gaming-spiders/schedule | \
+  #     jq .
+  # ~>
+  #
   run_all_spiders:
     when:
       and:
