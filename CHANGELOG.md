@@ -21,6 +21,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 * remove [Snyk](https://snyk.io/) from CI pipeline & docs
 * remove LGTM badges from main README.md
+* remove ```dev_env/.gitignore```
 
 ## [1.5.0] - [2019-07-18]
 
