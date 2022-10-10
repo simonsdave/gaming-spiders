@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 * cloudfeaster 0.9.30 -> 0.9.59
 * added 2022 to LICENSE.md
+* CircleCI setup_remote_docker version 19.03.13 -> 20.10.17
 
 ### Removed
 
